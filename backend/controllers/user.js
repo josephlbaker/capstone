@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const db = require("../models/User.js");
+const db = require("../models");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
@@ -50,6 +50,8 @@ module.exports = {
                     lastName: newUser.lastName,
                     email: newUser.email,
                     username: newUser.username,
+                    preference1: newUser.preference1,
+                    preference2: newUser.preference2,
                     _id: newUser._id
                   };
                   jwt.sign(
