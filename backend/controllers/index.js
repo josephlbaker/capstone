@@ -1,5 +1,5 @@
 module.exports = {
   user: require("./user"),
-  // city: require("./city"),
-  post: require("./post")
+  post: require("./post"),
+  event: require("./event")
 };

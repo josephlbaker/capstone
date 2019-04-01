@@ -5,6 +5,7 @@ import axios from 'axios';
 
 // import './App.css';
 import SignUp from './SignUp';
+import Post from './Post';
 
 class App extends Component {
 
@@ -16,7 +17,12 @@ class App extends Component {
     password: "",
     isLoggedIn: "",
     preference1: "",
-    preference2: ""
+    preference2: "",
+    title: "",
+    content: "",
+    timestamp: "",
+    gameTitle: "",
+    platform: ""
   }
 
   componentDidMount() {
@@ -52,6 +58,25 @@ class App extends Component {
     });
   };
 
+  handleNewPost = event => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:3001/posts/createpost", {
+        title: this.state.title,
+        content: this.state.content,
+        username: this.state.username,
+        timestamp: this.state.timestamp,
+        gameTitle: this.state.gameTitle,
+        platform: this.state.platform
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log("Error");
+      })
+  };
+
   handleSignUp = event => {
     event.preventDefault();
     axios
@@ -78,10 +103,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SignUp
+        {/* <SignUp
           handleInput={this.handleInput}
           handleSignUp={this.handleSignUp}
           isLoggedIn={this.state.isLoggedIn}
+        /> */}
+        <Post
+          handleInput={this.handleInput}
+          handleNewPost={this.handleNewPost}
         />
       </div>
     );
