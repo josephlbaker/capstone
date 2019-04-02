@@ -6,6 +6,7 @@ import axios from 'axios';
 // import './App.css';
 import SignUp from './SignUp';
 import Post from './Post';
+import LogIn from './LogIn';
 
 class App extends Component {
 
@@ -22,7 +23,8 @@ class App extends Component {
     content: "",
     timestamp: "",
     gameTitle: "",
-    platform: ""
+    platform: "",
+    userId: "",
   }
 
   componentDidMount() {
@@ -58,6 +60,35 @@ class App extends Component {
     });
   };
 
+  handleLogin = event => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:3001/users/login", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(res => {
+        localStorage.token = res.data.signedJwt;
+        this.setState({
+          isLoggedIn: true,
+          username: res.data.user.username,
+          redirect: true,
+          userId: res.data.user._id
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleLogOut = () => {
+    this.setState({
+      email: "",
+      password: "",
+      isLoggedIn: false
+    });
+    localStorage.clear();
+    window.location.href = "/"
+  };
+
   handleNewPost = event => {
     event.preventDefault();
     axios
@@ -67,7 +98,7 @@ class App extends Component {
         username: this.state.username,
         timestamp: this.state.timestamp,
         gameTitle: this.state.gameTitle,
-        platform: this.state.platform
+        platform: this.state.platform,
       })
       .then(res => {
         console.log(res);
@@ -108,6 +139,10 @@ class App extends Component {
           handleSignUp={this.handleSignUp}
           isLoggedIn={this.state.isLoggedIn}
         /> */}
+        <LogIn
+          handleInput={this.handleInput}
+          handleLogin={this.handleLogin}
+        />
         <Post
           handleInput={this.handleInput}
           handleNewPost={this.handleNewPost}

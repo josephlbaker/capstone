@@ -103,6 +103,7 @@ module.exports = {
             console.log("matched");
             let user = {
               email: users[0].email,
+              username: users[0].username,
               _id: users[0]._id
             };
             jwt.sign(

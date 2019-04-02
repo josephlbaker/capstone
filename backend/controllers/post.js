@@ -18,7 +18,7 @@ module.exports = {
       title: req.body.title,
       content: req.body.content,
       timestamp: req.body.timestamp,
-      username: req.userId,
+      // username: req.body.username,
       gameTitle: req.body.gameTitle,
       platform: req.body.platform
     });

@@ -27,10 +27,11 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  event: {
-    type: Schema.Types.ObjectId,
-    ref: "Event"
+  username: {
+    type: String
   }
 });
 
 module.exports = mongoose.model("Post", PostSchema);
+// need embedded data
+// user:[User.Schema]
