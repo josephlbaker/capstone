@@ -14,9 +14,11 @@ module.exports = {
   },
   createEvent: (req, res) => {
     let newEvent = new db.Event({
-      user: req.body.userId,
-      players: req.body.players,
-      post: req.body.post
+      title: req.body.title,
+      content: req.body.content,
+      timestamp: req.body.date,
+      platform: req.body.platform,
+      user: req.userId
     });
     db.Event.create(newEvent, (err, newEventCreated) => {
       if (err) return console.log(err);

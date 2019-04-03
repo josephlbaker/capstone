@@ -6,5 +6,7 @@ mongoose.connect('mongodb://localhost/capstone',
 module.exports = {
   User: require("./user"),
   Post: require("./post"),
-  // City: require("./City")
+  Event: require("./event"),
+  Comment: require("./comment"),
+  Like: require("./like")
 };

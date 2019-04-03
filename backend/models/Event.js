@@ -13,16 +13,13 @@ const EventSchema = new Schema({
     required: true
   },
   timestamp: {
-    type: String,
+    type: Date,
+    default: Date.now(),
     required: true
   },
   platform: {
     type: String,
     required: true
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
   },
   username: {
     type: String

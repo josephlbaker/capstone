@@ -17,11 +17,11 @@ module.exports = {
     let newPost = new db.Post({
       title: req.body.title,
       content: req.body.content,
-      timestamp: req.body.timestamp,
-      username: req.body.username,
-      gameTitle: req.body.gameTitle,
+      timestamp: req.body.date,
+      // username: req.userId,
+      // gameTitle: req.body.gameTitle,
       platform: req.body.platform,
-      user: req.body.user
+      user: req.userId
     });
     db.Post.create(newPost, (err, newPostCreated) => {
       if (err) return console.log(err);

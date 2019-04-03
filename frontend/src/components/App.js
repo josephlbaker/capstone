@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ import SignUp from './SignUp';
 import Post from './Post';
 import LogIn from './LogIn';
 import GamesList from './GamesList';
+import Nav from './Nav';
 
 class App extends Component {
 
@@ -26,6 +27,7 @@ class App extends Component {
     gameTitle: "",
     platform: "",
     userId: "",
+    user: ""
   }
 
   componentDidMount() {
@@ -136,20 +138,34 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <SignUp
-          handleInput={this.handleInput}
-          handleSignUp={this.handleSignUp}
-          isLoggedIn={this.state.isLoggedIn}
-        /> */}
-        <LogIn
+        <Nav
           handleInput={this.handleInput}
           handleLogin={this.handleLogin}
+          handleSignUp={this.handleSignUp}
+          handleLogOut={this.handleLogOut}
+          isLoggedIn={this.state.isLoggedIn}
+          profileId={this.state.profileId || null}
         />
+        <div className="body">
+          <BrowserRouter>
+            <Switch>
+              <Route
+                exact path="/"
+                render={() => {
+                  if (this.state.isLoggedIn) {
+                    return <GamesList />
+                  } else {
+                    return (<div></div>);
+                  }
+                }}
+              />
+            </Switch>
+          </BrowserRouter>
+        </div>
         {/* <Post
           handleInput={this.handleInput}
           handleNewPost={this.handleNewPost}
         /> */}
-        <GamesList />
       </div>
     );
   }

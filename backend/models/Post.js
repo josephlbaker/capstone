@@ -12,7 +12,8 @@ const PostSchema = new Schema({
     required: true
   },
   timestamp: {
-    type: String,
+    type: Date,
+    default: Date.now(),
     required: true
   },
   platform: {

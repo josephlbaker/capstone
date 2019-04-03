@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 Schema = mongoose.Schema;
-const mongoose = require("mongoose");
-
-Schema = mongoose.Schema;
 
 const LikeSchema = new Schema({
   selectedUser: {
