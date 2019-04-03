@@ -41,18 +41,13 @@ const UserSchema = new Schema({
   originId: {
     type: String
   },
-  preference1: {
-    type: String
+  numUpVotes: {
+    type: Number
   },
-  preference2: {
-    type: String
+  numDownVotes: {
+    type: Number
   },
-  preference3: {
-    type: String
-  },
-  preference4: {
-    type: String
-  }
+  games: [String]
 });
 
 UserSchema.set("toJSON", {

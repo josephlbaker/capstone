@@ -15,10 +15,6 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
-  gameTitle: {
-    type: String,
-    required: true
-  },
   platform: {
     type: String,
     required: true
@@ -29,6 +25,10 @@ const PostSchema = new Schema({
   },
   username: {
     type: String
+  },
+  game: {
+    type: String,
+    required: true
   }
 });
 

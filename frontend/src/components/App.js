@@ -7,6 +7,7 @@ import axios from 'axios';
 import SignUp from './SignUp';
 import Post from './Post';
 import LogIn from './LogIn';
+import GamesList from './GamesList';
 
 class App extends Component {
 
@@ -96,9 +97,10 @@ class App extends Component {
         title: this.state.title,
         content: this.state.content,
         username: this.state.username,
+        user: this.state.userId,
         timestamp: this.state.timestamp,
         gameTitle: this.state.gameTitle,
-        platform: this.state.platform,
+        platform: this.state.platform
       })
       .then(res => {
         console.log(res);
@@ -143,10 +145,11 @@ class App extends Component {
           handleInput={this.handleInput}
           handleLogin={this.handleLogin}
         />
-        <Post
+        {/* <Post
           handleInput={this.handleInput}
           handleNewPost={this.handleNewPost}
-        />
+        /> */}
+        <GamesList />
       </div>
     );
   }
