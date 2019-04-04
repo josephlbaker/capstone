@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 
-import SignUp from './SignUp';
-import LogIn from './LogIn';
-
 export default class Nav extends Component {
   render() {
-    return (
-      <div>
-        <SignUp handleSignUp={this.props.handleSignUp} handleInput={this.props.handleInput} />
-        <LogIn handleLogin={this.props.handleLogin} handleInput={this.props.handleInput} />
-      </div>
-    )
+    if (this.props.isLoggedIn) {
+      return (
+        <div>
+          <a href="/posts">Posts</a>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <a href="/login">Login</a>
+          <a href="/signup">Signup</a>
+        </div>
+      )
+    }
   }
 }

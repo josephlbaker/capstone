@@ -4,6 +4,10 @@ export default class Post extends Component {
   render() {
     return (
       <div>
+
+        <div className="myPosts">
+        </div>
+
         <form>
           <input name="title" placeholder="Title" onChange={this.props.handleInput} />
           <input name="content" placeholder="Content" onChange={this.props.handleInput} />
