@@ -31,11 +31,17 @@ export default class GamesList extends Component {
 
   render() {
 
-    return (
-      <div>
-        <div className="games-gallery"></div>
-      </div>
-    )
+    if (this.props.isLoggedIn) {
+      return (
+        <div>
+          <div className="games-gallery"></div>
+        </div>
+      )
+    } else {
+      return (
+        <h1>Landing</h1>
+      )
+    }
   }
 }
 

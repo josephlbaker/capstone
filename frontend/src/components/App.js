@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
-
 import axios from 'axios';
 
-// import './App.css';
-import SignUp from './SignUp';
-import Post from './Post';
-import LogIn from './LogIn';
-import GamesList from './GamesList';
 import Nav from './Nav';
+import Routes from './Routes';
 
 class App extends Component {
 
@@ -27,14 +21,15 @@ class App extends Component {
     gameTitle: "",
     platform: "",
     userId: "",
-    user: ""
+    user: "",
+    profileId: ""
   }
 
   componentDidMount() {
     if (localStorage.token) {
       axios({
         method: "get",
-        url: `https://localhost:3000`,
+        url: `http://localhost:3000`,
         headers: { authorization: `Bearer ${localStorage.token}` }
       })
         .then(response => {
@@ -136,36 +131,18 @@ class App extends Component {
   };
 
   render() {
+    console.log("IS LOGGED IN?", this.state.isLoggedIn);
     return (
       <div className="App">
-        <Nav
-          handleInput={this.handleInput}
-          handleLogin={this.handleLogin}
-          handleSignUp={this.handleSignUp}
-          handleLogOut={this.handleLogOut}
-          isLoggedIn={this.state.isLoggedIn}
-          profileId={this.state.profileId || null}
-        />
         <div className="body">
-          <BrowserRouter>
-            <Switch>
-              <Route
-                exact path="/"
-                render={() => {
-                  if (this.state.isLoggedIn) {
-                    return <GamesList />
-                  } else {
-                    return (<div></div>);
-                  }
-                }}
-              />
-            </Switch>
-          </BrowserRouter>
+          <Nav isLoggedIn={this.state.isLoggedIn} />
+          <Routes handleInput={this.handleInput}
+            handleLogin={this.handleLogin}
+            handleSignUp={this.handleSignUp}
+            handleLogOut={this.handleLogOut}
+            isLoggedIn={this.state.isLoggedIn}
+            profileId={this.state.profileId || null} />
         </div>
-        {/* <Post
-          handleInput={this.handleInput}
-          handleNewPost={this.handleNewPost}
-        /> */}
       </div>
     );
   }
