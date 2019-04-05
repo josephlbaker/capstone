@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Nav from './Nav';
-import Routes from './Routes';
+import GamesList from './GamesList';
 
 class App extends Component {
 
@@ -29,14 +29,15 @@ class App extends Component {
     if (localStorage.token) {
       axios({
         method: "get",
-        url: `http://localhost:3000`,
+        url: `http://localhost:3001/users/`,
         headers: { authorization: `Bearer ${localStorage.token}` }
       })
         .then(response => {
+          console.log(response.data.user)
           console.log('App successfully recieves a response')
           this.setState({
             isLoggedIn: true,
-            user: response.data.user,
+            user: response.data.user
           });
         })
         .catch(() => {
@@ -69,10 +70,12 @@ class App extends Component {
         localStorage.token = res.data.signedJwt;
         this.setState({
           isLoggedIn: true,
-          username: res.data.user.username,
+          // username: res.data.user.username,
           redirect: true,
-          userId: res.data.user._id
+          // userId: res.data.user._id,
+          user: res.data.user
         });
+        console.log(this.state.user);
       })
       .catch(err => console.log(err));
   };
@@ -114,10 +117,9 @@ class App extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
+        redirect: true,
         username: this.state.username,
-        password: this.state.password,
-        preference1: this.state.preference1,
-        preference2: this.state.preference2
+        password: this.state.password
       })
       .then(response => {
         localStorage.token = response.data.signedJwt;
@@ -131,20 +133,27 @@ class App extends Component {
   };
 
   render() {
-    console.log("IS LOGGED IN?", this.state.isLoggedIn);
-    return (
-      <div className="App">
-        <div className="body">
-          <Nav isLoggedIn={this.state.isLoggedIn} />
-          <Routes handleInput={this.handleInput}
-            handleLogin={this.handleLogin}
-            handleSignUp={this.handleSignUp}
+    if (this.state.isLoggedIn) {
+      return (
+        <div>
+          <Nav
             handleLogOut={this.handleLogOut}
             isLoggedIn={this.state.isLoggedIn}
-            profileId={this.state.profileId || null} />
+            user={this.state.user} />
         </div>
-      </div>
-    );
+      )
+    } else {
+      return (
+        <div className="App">
+          <GamesList
+            isLoggedIn={this.state.isLoggedIn}
+            user={this.state.user}
+            handleInput={this.handleInput}
+            handleLogin={this.handleLogin}
+            handleSignUp={this.handleSignUp} />
+        </div>
+      )
+    }
   }
 }
 
