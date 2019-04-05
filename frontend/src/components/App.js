@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Nav from './Nav';
-import Routes from './Routes';
 import GamesList from './GamesList';
 
 class App extends Component {
@@ -134,30 +133,28 @@ class App extends Component {
   };
 
   render() {
-    return (
-      <div className="App">
-        <Nav isLoggedIn={this.state.isLoggedIn}
-          user={this.state.user} />
-        <GamesList isLoggedIn={this.state.isLoggedIn}
-          user={this.state.user} />
-      </div>
-    );
+    if (this.state.isLoggedIn) {
+      return (
+        <div>
+          <Nav
+            handleLogOut={this.handleLogOut}
+            isLoggedIn={this.state.isLoggedIn}
+            user={this.state.user} />
+        </div>
+      )
+    } else {
+      return (
+        <div className="App">
+          <GamesList
+            isLoggedIn={this.state.isLoggedIn}
+            user={this.state.user}
+            handleInput={this.handleInput}
+            handleLogin={this.handleLogin}
+            handleSignUp={this.handleSignUp} />
+        </div>
+      )
+    }
   }
 }
 
 export default App;
-
-
-
-//inside return statement:
-{/* <div className="body">
-  <Nav isLoggedIn={this.state.isLoggedIn}
-    handleLogOut={this.handleLogOut} />
-  <Routes
-    handleInput={this.handleInput}
-    handleLogin={this.handleLogin}
-    handleSignUp={this.handleSignUp}
-    isLoggedIn={this.state.isLoggedIn}
-    user={this.state.user}
-    profileId={this.state.profileId || null} />
-</div> */}
