@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import LogIn from './LogIn';
+import SignUp from './SignUp';
 
 export default class GamesList extends Component {
 
@@ -39,7 +41,12 @@ export default class GamesList extends Component {
       )
     } else {
       return (
-        <h1>Landing</h1>
+        <div>
+          <LogIn handleInput={this.props.handleInput}
+            handleLogin={this.props.handleLogin} />
+          <SignUp handleSignUp={this.props.handleSignUp}
+            handleInput={this.props.handleInput} />
+        </div>
       )
     }
   }

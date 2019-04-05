@@ -15,6 +15,7 @@ export default class Routes extends Component {
             exact path="/"
             render={() => {
               return <GamesList
+                user={this.props.user}
                 isLoggedIn={this.props.isLoggedIn} />
             }}
           />
@@ -22,6 +23,7 @@ export default class Routes extends Component {
             exact path="/login"
             render={() => {
               return <LogIn
+                user={this.props.user}
                 handleInput={this.props.handleInput}
                 handleLogin={this.props.handleLogin} />
             }}
@@ -30,17 +32,22 @@ export default class Routes extends Component {
             exact path="/signup"
             render={() => {
               return <SignUp
-                handleInput={this.handleInput}
-                handleSignUp={this.handleSignUp} />
+                user={this.props.user}
+                handleInput={this.props.handleInput}
+                handleSignUp={this.props.handleSignUp} />
             }}
           />
+
           <Route
             exact path="/posts"
             render={() => {
+              console.log(this.props.user);
               return <Post
+                user={this.props.user}
                 isLoggedIn={this.props.isLoggedIn} />
             }}
           />
+
         </Switch>
       </BrowserRouter>
     )
