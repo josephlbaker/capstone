@@ -20,6 +20,11 @@ export default class Nav extends Component {
         user={this.props.user}
       />
       case 'posts': return <Post
+        title={this.props.title}
+        content={this.props.content}
+        platform={this.props.platform}
+        handleInput={this.props.handleInput}
+        handleNewPost={this.props.handleNewPost}
         isLoggedIn={this.props.isLoggedIn}
         user={this.props.user} />
       // default: return null

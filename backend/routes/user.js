@@ -18,6 +18,7 @@ router.use((req, res, next) => {
     let verified = jwt.verify(req.token, "bWF0dGJyYW5kb25qb2VjaHJpc3RpbmE=");
     console.log("Verified ", verifed);
     req.userId = verified._id;
+    // req.user = verified;
     next();
   } else {
     res.sendStatus(403);

@@ -33,23 +33,18 @@ class App extends Component {
         headers: { authorization: `Bearer ${localStorage.token}` }
       })
         .then(response => {
-          console.log(response.data.user)
           console.log('App successfully recieves a response')
           this.setState({
             isLoggedIn: true,
+            // userId: response.userId
             user: response.data.user
-          });
+          })
         })
-        .catch(() => {
-          this.setState({
-            isLoggedIn: false
-          });
-          localStorage.clear();
-        });
+        .catch(err => console.log(err))
     } else {
       this.setState({
         isLoggedIn: false
-      });
+      })
     }
   }
 
@@ -96,10 +91,10 @@ class App extends Component {
       .post("http://localhost:3001/posts/createpost", {
         title: this.state.title,
         content: this.state.content,
-        username: this.state.username,
-        user: this.state.userId,
-        timestamp: this.state.timestamp,
-        gameTitle: this.state.gameTitle,
+        user: this.state.user,
+        // user: this.state.userId,
+        // timestamp: this.state.timestamp,
+        // gameTitle: this.state.gameTitle,
         platform: this.state.platform
       })
       .then(res => {
@@ -137,6 +132,11 @@ class App extends Component {
       return (
         <div>
           <Nav
+            title={this.state.title}
+            content={this.state.content}
+            platform={this.state.platform}
+            handleInput={this.handleInput}
+            handleNewPost={this.handleNewPost}
             handleLogOut={this.handleLogOut}
             isLoggedIn={this.state.isLoggedIn}
             user={this.state.user} />

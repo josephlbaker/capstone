@@ -1,23 +1,76 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import MyPosts from './MyPosts';
 
 export default class Post extends Component {
 
-  render() {
-    console.log(this.props.user);
-    return (
-      <div>Hello</div>
-    )
+  // render() {
+  //   console.log(this.props.user);
+  //   return (
+  //     <div>Hello</div>
+  //   )
+  // }
+
+  state = {
+    posts: []
   }
 
-  // state = {
-  //   posts: []
-  // }
+  componentDidMount() {
+    fetch("http://localhost:3001/posts", {
+      method: "GET"
+    })
+      .then(results => results.json())
+      .then(data => this.setState({ posts: data }))
+      .catch(function (error) { console.log(error) });
+  }
+
+  _renderPosts = (post, index) => {
+    if (post.user.username === this.props.user.username) {
+      return <li key={index}>{post.title} - {post.content} - {post.user.username}</li>
+    } else {
+      return null;
+    }
+  }
+
+
+
+  // db.findUser
+  // store user in foundUser
+  // search within post and filter by foundUser id
+  // return json(foundUsers)
+
+
+
+  render() {
+    const { posts } = this.state;
+
+    return (
+      <div>
+        <h1>Posts</h1>
+        <ul>
+          {
+            posts ?
+              posts.map(this._renderPosts)
+              :
+              "No posts for this game"
+          }
+        </ul>
+        <form>
+          <input name="title" placeholder="Title" onChange={this.props.handleInput} />
+          <input name="content" placeholder="Content" onChange={this.props.handleInput} />
+          {/* <input name="timestamp" placeholder="Current Time" onChange={this.props.handleInput} /> */}
+          {/* <input name="gameTitle" placeholder="Game" onChange={this.props.handleInput} /> */}
+          <input name="platform" placeholder="platform" onChange={this.props.handleInput} />
+          <button name="submit" onClick={this.props.handleNewPost}>Submit</button>
+        </form>
+      </div>
+    );
+  }
+
 
   // componentDidMount() {
   //   axios.get(`http://localhost:3001/posts`)
   //     .then((res) => {
-  //       // filter the response and only add posts matching the cityId, which we get from above.
   //       const posts = [];
   //       res.data.filter(ele => {
   //         const userId = ele.user ? ele.user._id : '';
@@ -39,27 +92,19 @@ export default class Post extends Component {
   //   let postComponents = this.state.posts ? this.state.posts.map((post, index) => {
   //     console.log(this.props.user);
   //     return (
-  //       <Post
+  //       <MyPosts
   //         post={post} key={index}
   //       />
   //     )
   //   }) : <p>Posts not found</p>;
 
-  //   return (
-  //     <div>
-  //       <div className="myPosts">
-  //         {postComponents}
-  //       </div>
+  // return (
+  // <div>
+  //   <div className="myPosts">
+  //     {postComponents}
+  //   </div>
 
-  //       <form>
-  //         <input name="title" placeholder="Title" onChange={this.props.handleInput} />
-  //         <input name="content" placeholder="Content" onChange={this.props.handleInput} />
-  //         <input name="timestamp" placeholder="Current Time" onChange={this.props.handleInput} />
-  //         <input name="gameTitle" placeholder="Game" onChange={this.props.handleInput} />
-  //         <input name="platform" placeholder="platform" onChange={this.props.handleInput} />
-  //         <button name="submit" onClick={this.props.handleNewPost}>Submit</button>
-  //       </form>
-  //     </div>
-  //   )
-  // }
+  // </div>
+  //     )
+  //   }
 }
