@@ -1,7 +1,4 @@
-const bcrypt = require("bcrypt");
 const db = require("../models");
-const jwt = require("jsonwebtoken");
-
 
 module.exports = {
   index: (req, res) => {
@@ -17,11 +14,11 @@ module.exports = {
     let newPost = new db.Post({
       title: req.body.title,
       content: req.body.content,
-      timestamp: req.body.date,
+      // timestamp: req.body.date,
       // username: req.userId,
       // gameTitle: req.body.gameTitle,
       platform: req.body.platform,
-      user: req.userId
+      user: req.body.user
     });
     db.Post.create(newPost, (err, newPostCreated) => {
       if (err) return console.log(err);

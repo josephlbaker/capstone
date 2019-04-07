@@ -27,10 +27,10 @@ const PostSchema = new Schema({
   username: {
     type: String
   },
-  game: {
-    type: String,
-    required: true
-  }
+  // game: {
+  //   type: String,
+  //   required: true
+  // }
 });
 
 module.exports = mongoose.model("Post", PostSchema);
