@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import LogIn from './LogIn';
 import SignUp from './SignUp';
+import SearchBar from './SearchBar';
 
 export default class GamesList extends Component {
 
@@ -68,6 +69,7 @@ export default class GamesList extends Component {
     if (this.props.isLoggedIn) {
       return (
         <div>
+          <SearchBar />
           {/* <form>
             <input className="search-field"></input>
             <button className="search">Search</button>
