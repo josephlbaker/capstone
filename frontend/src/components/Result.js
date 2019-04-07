@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
+import GamePosts from './GamePosts';
 
 export default class Result extends Component {
 
   state = {
-    resultId: ''
+    gameId: '',
+    gameTitle: ''
   }
 
   handleClick(result) {
     this.setState({
-      resultId: result
+      gameId: result.id,
+      gameTitle: result.name
     })
   }
 
@@ -17,12 +20,21 @@ export default class Result extends Component {
       return null;
     }
 
+    if (this.state.gameTitle) {
+      return (
+        <GamePosts
+          gameId={this.state.gameId}
+          gameTitle={this.state.gameTitle}
+        />
+      )
+    }
+
     const resultsMarkup = this.props.results.map((result, key) => {
       return (
         <div key={key}>
           <h2>Results:</h2>
           <p>Name: {result.name}</p>
-          <img onClick={() => { this.handleClick(result.id) }} src={result.image.small_url} alt={`${result.name}`} />
+          <img onClick={() => { this.handleClick(result) }} src={result.image.small_url} alt={`${result.name}`} />
         </div>
       )
     })
