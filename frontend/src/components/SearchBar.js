@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-class Search extends Component {
+import Result from './Result';
+
+class SearchBar extends Component {
   state = {
     query: '',
-    results: []
+    results: [],
+    resultId: ''
   }
 
   getGames = () => {
@@ -28,40 +31,26 @@ class Search extends Component {
     })
   }
 
+  handleClick = (id) => {
+    this.setState({
+      id
+    })
+  }
+
   handleInputChange = (e) => {
     this.setState({
       query: this.search.value
-    }, () => {
-      if (this.state.query && this.state.query.length > 1) {
-        if (this.state.query.length % 2 === 0) {
-          this.getGames()
-        }
-      }
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    setInterval(() => {
-      this.getGames()
-    }, 2000);
+    this.getGames()
   }
 
   render() {
-    const results = this.state.results;
-    const result = results.length > 0 && (
-      results.map((result, key) => {
-        return (
-          <div key={key}>
-            <h2>Results:</h2>
-            <p>Name: {result.name}</p>
-            <img src={result.image.small_url} alt={`${result.name}`} />
-          </div>
-        )
-      })
-    )
-    console.log("Results: ", this.state.results)
+    console.log("Result ID: ", this.state.resultId)
     return (
       <form onSubmit={this.handleSubmit}>
         <input
@@ -71,11 +60,11 @@ class Search extends Component {
         />
         <p>{this.state.query}</p>
         <div className="results-container">
-          {result}
+          <Result results={this.state.results} handleClick={this.handleClick} />
         </div>
       </form>
     )
   }
 }
 
-export default Search
+export default SearchBar
