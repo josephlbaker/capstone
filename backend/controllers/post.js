@@ -18,7 +18,9 @@ module.exports = {
       // username: req.userId,
       gameId: req.body.gameId,
       platform: req.body.platform,
-      user: req.body.user
+      user: req.body.user,
+      players: req.body.players,
+      isEvent: req.body.isEvent
     });
     db.Post.create(newPost, (err, newPostCreated) => {
       if (err) return console.log(err);

@@ -102,6 +102,8 @@ module.exports = {
           if (match) {
             console.log("matched");
             let user = {
+              firstName: users[0].firstName,
+              lastName: users[0].lastName,
               email: users[0].email,
               username: users[0].username,
               _id: users[0]._id
@@ -141,7 +143,10 @@ module.exports = {
     });
   },
   update: (req, res) => {
-    let userId = req.body._id;
+    let userId = req.params.id;
+
+    console.log(userId);
+
     db.User.findOneAndUpdate(
       { _id: userId },
       req.body,

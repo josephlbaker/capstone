@@ -30,7 +30,12 @@ const PostSchema = new Schema({
   gameId: {
     type: String,
     required: true
-  }
+  },
+  players: [{
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }],
+  isEvent: Boolean
 });
 
 module.exports = mongoose.model("Post", PostSchema);

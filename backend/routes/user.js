@@ -5,7 +5,7 @@ const controllers = require("../controllers");
 
 router.post("/login", controllers.user.login);
 router.post("/signup", controllers.user.signup);
-router.put('/update', controllers.user.update);
+router.put('/:id/update', controllers.user.update);
 router.get("/", controllers.user.index);
 
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import LogOut from './LogOut';
 import GamesList from './GamesList';
 import Post from './Post';
+import Profile from './Profile';
 
 export default class Nav extends Component {
 
@@ -26,7 +27,11 @@ export default class Nav extends Component {
         handleInput={this.props.handleInput}
         handleNewPost={this.props.handleNewPost}
         isLoggedIn={this.props.isLoggedIn}
-        user={this.props.user} />
+        user={this.props.user}
+      />
+      case 'profile': return <Profile
+        user={this.props.user}
+      />
       // default: return null
     }
   }
@@ -37,6 +42,7 @@ export default class Nav extends Component {
         <ul>
           <li onClick={this.handleClick.bind(this, 'games')}>Games</li>
           <li onClick={this.handleClick.bind(this, 'posts')}>Posts</li>
+          <li onClick={this.handleClick.bind(this, 'profile')}>My Profile</li>
           <li><LogOut handleLogOut={this.props.handleLogOut} /></li>
         </ul>
         {this.renderSubComp()}
