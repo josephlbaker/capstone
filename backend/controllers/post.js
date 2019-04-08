@@ -17,6 +17,7 @@ module.exports = {
       // timestamp: req.body.date,
       // username: req.userId,
       gameId: req.body.gameId,
+      gameTitle: req.body.gameTitle,
       platform: req.body.platform,
       user: req.body.user,
       players: req.body.players,
@@ -36,8 +37,17 @@ module.exports = {
       res.json(foundPost);
     });
   },
+  getOnePost: (req, res) => {
+    let postId = req.params.id;
+    db.Post.findOne({ _id: postId }, (err, foundPost) => {
+      if (err) return console.log(err);
+      console.log(foundPost);
+      res.json(foundPost);
+    });
+  },
+
   updatePost: (req, res) => {
-    let postId = req.body._id;
+    let postId = req.params.id;
     console.log(postId);
     db.Post.findOneAndUpdate(
       { _id: postId },

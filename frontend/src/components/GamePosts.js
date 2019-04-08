@@ -3,15 +3,6 @@ import axios from 'axios';
 
 export default class GamePosts extends Component {
 
-  state = {
-    title: "",
-    content: "",
-    platform: "",
-    posts: [],
-    isEvent: false,
-    players: []
-  }
-
   componentDidMount() {
     fetch("http://localhost:3001/posts", {
       method: "GET"
@@ -26,7 +17,6 @@ export default class GamePosts extends Component {
       return (
         <li key={index}>
           {post.title} - {post.content} - {post.user.username}
-
           <div>
             <button onClick={this.handleJoin}>Join Game</button>
           </div>
@@ -79,6 +69,7 @@ export default class GamePosts extends Component {
         // gameTitle: this.state.gameTitle,
         platform: this.state.platform,
         gameId: this.props.gameId,
+        gameTitle: this.props.gameTitle,
         isEvent: this.state.isEvent
       })
       .then(res => {
