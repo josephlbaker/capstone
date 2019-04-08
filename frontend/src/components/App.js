@@ -85,26 +85,6 @@ class App extends Component {
     window.location.href = "/"
   };
 
-  handleNewPost = event => {
-    event.preventDefault();
-    axios
-      .post("http://localhost:3001/posts/createpost", {
-        title: this.state.title,
-        content: this.state.content,
-        user: this.state.user,
-        // user: this.state.userId,
-        // timestamp: this.state.timestamp,
-        // gameTitle: this.state.gameTitle,
-        platform: this.state.platform
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log("Error");
-      })
-  };
-
   handleSignUp = event => {
     event.preventDefault();
     axios
