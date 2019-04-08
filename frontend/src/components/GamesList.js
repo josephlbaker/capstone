@@ -69,7 +69,9 @@ export default class GamesList extends Component {
     if (this.props.isLoggedIn) {
       return (
         <div>
-          <SearchBar />
+          <SearchBar
+            user={this.props.user}
+          />
           {/* <form>
             <input className="search-field"></input>
             <button className="search">Search</button>

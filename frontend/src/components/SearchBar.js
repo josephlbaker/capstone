@@ -31,12 +31,6 @@ class SearchBar extends Component {
     })
   }
 
-  handleClick = (id) => {
-    this.setState({
-      id
-    })
-  }
-
   handleInputChange = (e) => {
     this.setState({
       query: this.search.value
@@ -50,7 +44,6 @@ class SearchBar extends Component {
   }
 
   render() {
-    console.log("Result ID: ", this.state.resultId)
     return (
       <form onSubmit={this.handleSubmit}>
         <input
@@ -60,7 +53,10 @@ class SearchBar extends Component {
         />
         <p>{this.state.query}</p>
         <div className="results-container">
-          <Result results={this.state.results} handleClick={this.handleClick} />
+          <Result
+            user={this.props.user}
+            results={this.state.results}
+          />
         </div>
       </form>
     )

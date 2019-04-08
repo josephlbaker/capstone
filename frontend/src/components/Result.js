@@ -23,6 +23,7 @@ export default class Result extends Component {
     if (this.state.gameTitle) {
       return (
         <GamePosts
+          user={this.props.user}
           gameId={this.state.gameId}
           gameTitle={this.state.gameTitle}
         />
