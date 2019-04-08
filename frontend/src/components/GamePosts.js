@@ -3,6 +3,10 @@ import axios from 'axios';
 
 export default class GamePosts extends Component {
 
+  state = {
+    posts: []
+  }
+
   componentDidMount() {
     fetch("http://localhost:3001/posts", {
       method: "GET"
@@ -103,12 +107,10 @@ export default class GamePosts extends Component {
             <input name="content" placeholder="Content" onChange={this.handleInput} />
             {/* <input name="timestamp" placeholder="Current Time" onChange={this.props.handleInput} /> */}
             {/* <input name="gameTitle" placeholder="Game" onChange={this.props.handleInput} /> */}
-
+            <input name="platform" placeholder="platform" onChange={this.handleInput} />
             <label htmlFor="isEvent">Is this an event?</label>
             <input type="checkbox" name="isEvent" onChange={this.handleCheckbox} />
             <p>Other players will be able to join</p>
-
-            <input name="platform" placeholder="platform" onChange={this.handleInput} />
             <button name="submit" onClick={this.handleNewPost}>Submit</button>
           </form>
         </div>
