@@ -6,7 +6,7 @@ const controllers = require("../controllers");
 router.get("/", controllers.post.index);
 router.get("/:id", controllers.post.getOnePost);
 router.post("/createpost", controllers.post.createPost);
-router.delete("/deletepost", controllers.post.deletePost);
+router.delete("/:id/deletepost", controllers.post.deletePost);
 router.put("/:id/updatepost", controllers.post.updatePost);
 
 

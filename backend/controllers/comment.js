@@ -1,14 +1,10 @@
-const bcrypt = require("bcrypt");
 const db = require("../models");
-const jwt = require("jsonwebtoken");
-
 
 module.exports = {
   index: (req, res) => {
     db.Post.find({})
-      .populate("user")
+      .populate("post")
       .exec((err, foundComments) => {
-        console.log("HELLO user");
         if (err) return console.error(err);
         res.json(foundComments);
       });
@@ -16,7 +12,7 @@ module.exports = {
   createComment: (req, res) => {
     let newComment = new db.Comment({
       content: req.body.content,
-      user: req.userId,
+      user: req.body.user,
       timestamp: req.body.date,
       post: req.body.post
     });

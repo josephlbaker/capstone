@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EditPost from './EditPost';
+import CommentList from './CommentList';
 
 export default class ViewPost extends Component {
 
@@ -37,6 +38,7 @@ export default class ViewPost extends Component {
           {this.state.post.platform}
           {this.state.post.players}
           <button name="editPost" onClick={this.handleClick}>Edit</button>
+          <CommentList post={this.state.post} />
         </div>
       )
     }
@@ -47,6 +49,7 @@ export default class ViewPost extends Component {
         {this.state.post.content}
         {this.state.post.platform}
         {this.state.post.players}
+        <CommentList post={this.state.post} />
       </div>
     )
   }

@@ -52,6 +52,17 @@ export default class EditPost extends Component {
       })
   };
 
+  handleDeletePost = event => {
+    axios
+      .delete(`http://localhost:3001/posts/${this.props.post._id}/deletepost`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log("Error");
+      })
+  }
+
   render() {
     return (
       <div className="new-post">
@@ -70,7 +81,7 @@ export default class EditPost extends Component {
           <p>Other players will be able to join</p>
           <button name="submit" onClick={this.handleEditPost}>Submit</button>
         </form>
-        <button name="delete" onClick={this.handleDelete}>Delete Post?</button>
+        <button name="delete" onClick={this.handleDeletePost}>Delete Post</button>
       </div>
     )
   }
