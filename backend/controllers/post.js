@@ -14,9 +14,10 @@ module.exports = {
     let newPost = new db.Post({
       title: req.body.title,
       content: req.body.content,
-      // timestamp: req.body.date,
+      timestamp: req.body.date,
       // username: req.userId,
       gameId: req.body.gameId,
+      gameTitle: req.body.gameTitle,
       platform: req.body.platform,
       user: req.body.user,
       players: req.body.players,
@@ -29,15 +30,24 @@ module.exports = {
   },
 
   deletePost: (req, res) => {
-    let postId = req.body._id;
+    let postId = req.params.id;
     db.Post.findOneAndDelete({ _id: postId }, (err, foundPost) => {
       if (err) return console.log(err);
       console.log(foundPost);
       res.json(foundPost);
     });
   },
+  getOnePost: (req, res) => {
+    let postId = req.params.id;
+    db.Post.findOne({ _id: postId }, (err, foundPost) => {
+      if (err) return console.log(err);
+      console.log(foundPost);
+      res.json(foundPost);
+    });
+  },
+
   updatePost: (req, res) => {
-    let postId = req.body._id;
+    let postId = req.params.id;
     console.log(postId);
     db.Post.findOneAndUpdate(
       { _id: postId },

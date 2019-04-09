@@ -31,6 +31,10 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
+  gameTitle: {
+    type: String,
+    required: true
+  },
   players: [{
     type: Schema.Types.ObjectId,
     ref: "User"
