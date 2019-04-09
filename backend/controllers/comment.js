@@ -2,7 +2,7 @@ const db = require("../models");
 
 module.exports = {
   index: (req, res) => {
-    db.Post.find({})
+    db.Comment.find({})
       .populate("post")
       .exec((err, foundComments) => {
         if (err) return console.error(err);

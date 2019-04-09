@@ -25,6 +25,19 @@ class App extends Component {
     profileId: ""
   }
 
+  // componentDidMount() {
+  //   const user = localStorage.user ? JSON.parse(localStorage.user) : "";
+  //   localStorage.token
+  //     ? this.setState({
+  //       isLoggedIn: true,
+  //       user: user
+  //     })
+  //     : this.setState({
+  //       isLoggedIn: false
+  //     });
+  //   console.log(localStorage)
+  // }
+
   componentDidMount() {
     if (localStorage.token) {
       axios({
@@ -54,6 +67,30 @@ class App extends Component {
     });
   };
 
+  // handleLogIn = e => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:3001/users/login", {
+  //       email: this.state.email,
+  //       password: this.state.password
+  //     })
+  //     .then(res => {
+  //       let user = res.data.user;
+  //       localStorage.setItem("token", res.data.signedJWT);
+  //       localStorage.setItem("user", JSON.stringify(user));
+  //       this.setState({
+  //         user: res.data.user,
+  //         isLoggedIn: true,
+  //         password: "",
+  //         redirect: true
+  //       });
+  //       console.log(this.state.user);
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //     });
+  // };
+
   handleLogin = event => {
     event.preventDefault();
     axios
@@ -62,13 +99,14 @@ class App extends Component {
         password: this.state.password
       })
       .then(res => {
+        let user = res.data.user
         localStorage.token = res.data.signedJwt;
         this.setState({
           isLoggedIn: true,
           // username: res.data.user.username,
           redirect: true,
           // userId: res.data.user._id,
-          user: res.data.user
+          user: user
         });
         console.log(this.state.user);
       })

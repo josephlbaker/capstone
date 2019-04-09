@@ -37,6 +37,7 @@ module.exports = {
       res.json(foundPost);
     });
   },
+
   getOnePost: (req, res) => {
     let postId = req.params.id;
     db.Post.findOne({ _id: postId }, (err, foundPost) => {

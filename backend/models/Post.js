@@ -35,10 +35,11 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
-  players: [{
-    type: Schema.Types.ObjectId,
-    ref: "User"
-  }],
+  players: [String],
+  // players: [{
+  //   playerName: String,
+  //   // playerId: String
+  // }],
   isEvent: Boolean
 });
 

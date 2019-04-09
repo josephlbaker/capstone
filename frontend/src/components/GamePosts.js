@@ -7,7 +7,8 @@ export default class GamePosts extends Component {
 
   state = {
     posts: [],
-    postId: ''
+    postId: '',
+    isEvent: false
   }
 
   componentDidMount() {
@@ -32,7 +33,6 @@ export default class GamePosts extends Component {
           {post.title} - {post.content} - {post.user.username}
           <div>
             <button name="editPost" onClick={() => { this.handleClick(post) }}>View</button>
-            <button onClick={this.handleJoin}>Join Game</button>
           </div>
         </li>
       )
@@ -48,10 +48,6 @@ export default class GamePosts extends Component {
       return null;
     }
   }
-
-  // handleJoin = () => {
-
-  // }
 
   handleCheckbox = event => {
     if (this.state.isEvent === false || this.state.isEvent === 'off') {
