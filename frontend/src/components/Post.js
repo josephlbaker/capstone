@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios';
 import ViewPost from './ViewPost';
 
 export default class Post extends Component {
@@ -27,7 +26,7 @@ export default class Post extends Component {
   _renderPosts = (post, index) => {
     if (post.user.username === this.props.user.username) {
       return <li key={index}>{post.title} - {post.content} - {post.user.username}
-        <button name="editPost" onClick={() => { this.handleClick(post) }}>View</button>
+        <button name="viewPost" onClick={() => { this.handleClick(post) }}>View</button>
       </li>
     } else {
       return null;
@@ -39,7 +38,10 @@ export default class Post extends Component {
 
     if (this.state.postId) {
       return (
-        <ViewPost postId={this.state.postId} />
+        <ViewPost
+          user={this.props.user}
+          postId={this.state.postId}
+        />
       )
     } else {
       return (

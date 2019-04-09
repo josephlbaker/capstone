@@ -27,7 +27,8 @@ export default class ViewPost extends Component {
       return (
         <EditPost post={this.state.post} />
       )
-    } else {
+    }
+    if (this.props.user._id === this.state.post.user) {
       return (
         <div>
           {this.state.post.title}
@@ -39,5 +40,14 @@ export default class ViewPost extends Component {
         </div>
       )
     }
+    return (
+      <div>
+        {this.state.post.title}
+        {this.state.post.gameTitle}
+        {this.state.post.content}
+        {this.state.post.platform}
+        {this.state.post.players}
+      </div>
+    )
   }
 }
