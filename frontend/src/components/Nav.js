@@ -3,6 +3,7 @@ import LogOut from './LogOut';
 import GamesList from './GamesList';
 import Post from './Post';
 import Profile from './Profile';
+import PopularGames from './PopularGames';
 
 export default class Nav extends Component {
 
@@ -32,6 +33,9 @@ export default class Nav extends Component {
       case 'profile': return <Profile
         user={this.props.user}
       />
+      case 'popular': return <PopularGames
+        user={this.props.user}
+      />
       // default: return null
     }
   }
@@ -43,6 +47,7 @@ export default class Nav extends Component {
           <li onClick={this.handleClick.bind(this, 'games')}>Games</li>
           <li onClick={this.handleClick.bind(this, 'posts')}>Posts</li>
           <li onClick={this.handleClick.bind(this, 'profile')}>My Profile</li>
+          <li onClick={this.handleClick.bind(this, 'popular')}>Popular Games</li>
           <li><LogOut handleLogOut={this.props.handleLogOut} /></li>
         </ul>
         {this.renderSubComp()}
