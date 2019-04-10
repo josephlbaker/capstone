@@ -5,6 +5,7 @@ const controllers = require("../controllers");
 
 router.get("/", controllers.comment.index);
 router.post("/createcomment", controllers.comment.createComment);
+router.delete("/:id/deletecomment", controllers.comment.deleteComment);
 
 router.use((req, res, next) => {
   const bearerHeader = req.headers["authorization"];
@@ -21,7 +22,6 @@ router.use((req, res, next) => {
   }
 });
 
-router.delete("/deletecomment", controllers.comment.deleteComment);
 router.put("/updatecomment", controllers.comment.deleteComment);
 
 module.exports = router;

@@ -32,6 +32,7 @@ export default class Profile extends Component {
         <ul>
           <li onClick={this.handleClick.bind(this, 'edit-profile')}>Edit Profile</li>
         </ul>
+        {this.renderSubComp()}
       </div>
     )
   }

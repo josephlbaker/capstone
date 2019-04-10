@@ -2,7 +2,7 @@ const db = require("../models");
 
 module.exports = {
   index: (req, res) => {
-    db.Post.find({})
+    db.Comment.find({})
       .populate("post")
       .exec((err, foundComments) => {
         if (err) return console.error(err);
@@ -23,7 +23,8 @@ module.exports = {
   },
 
   deleteComment: (req, res) => {
-    let commentId = req.body._id;
+    let commentId = req.params.id;
+    console.log(commentId)
     db.Comment.findOneAndDelete({ _id: commentId }, (err, foundComment) => {
       if (err) return console.log(err);
       console.log(foundComment);
