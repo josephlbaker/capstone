@@ -28,7 +28,13 @@ export default class NewPost extends Component {
       .catch(err => {
         console.log("Error");
       })
+    this.props.handleNewPostSubmit();
   };
+
+  handleCancel = event => {
+    event.preventDefault();
+    this.props.handleNewPostSubmit();
+  }
 
   handleCheckbox = event => {
     if (this.state.isEvent === false || this.state.isEvent === 'off') {
@@ -54,6 +60,7 @@ export default class NewPost extends Component {
       <div>
         <div className="new-post">
           <h2>Add a Post</h2>
+          <button name="cancel" onClick={this.handleCancel}>Cancel</button>
           <form>
             <input name="title" placeholder="Title" onChange={this.handleInput} />
             <input name="content" placeholder="Content" onChange={this.handleInput} />

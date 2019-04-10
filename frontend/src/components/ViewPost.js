@@ -22,16 +22,9 @@ export default class ViewPost extends Component {
       .then(data => this.setState({ post: data }))
   }
 
-  returnToGamePosts = () => {
-    if (this.props.postId) {
-      this.setState({
-        gamePosts: true
-      })
-    } else {
-      this.setState({
-        myPosts: true
-      })
-    }
+  returnToGamePosts = (e) => {
+    e.preventDefault();
+    this.props.handleNewPostSubmit();
   }
 
   handleClick = () => {

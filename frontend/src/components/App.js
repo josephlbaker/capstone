@@ -13,16 +13,7 @@ class App extends Component {
     username: "",
     password: "",
     isLoggedIn: "",
-    preference1: "",
-    preference2: "",
-    title: "",
-    content: "",
-    timestamp: "",
-    gameTitle: "",
-    platform: "",
-    userId: "",
-    user: "",
-    profileId: ""
+    user: ""
   }
 
   // componentDidMount() {
@@ -151,11 +142,7 @@ class App extends Component {
       return (
         <div>
           <Nav
-            title={this.state.title}
-            content={this.state.content}
-            platform={this.state.platform}
             handleInput={this.handleInput}
-            handleNewPost={this.handleNewPost}
             handleLogOut={this.handleLogOut}
             isLoggedIn={this.state.isLoggedIn}
             user={this.state.user} />

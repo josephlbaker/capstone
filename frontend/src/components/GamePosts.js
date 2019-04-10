@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import ViewPost from './ViewPost';
 import NewPost from './NewPost';
+import PopularGames from './PopularGames';
 
 export default class GamePosts extends Component {
 
@@ -13,6 +14,15 @@ export default class GamePosts extends Component {
   }
 
   componentDidMount() {
+    fetch("http://localhost:3001/posts", {
+      method: "GET"
+    })
+      .then(results => results.json())
+      .then(data => this.setState({ posts: data }))
+      .catch(function (error) { console.log(error) });
+  }
+
+  componentDidUpdate() {
     fetch("http://localhost:3001/posts", {
       method: "GET"
     })
@@ -35,7 +45,8 @@ export default class GamePosts extends Component {
 
   handleNewPostSubmit = () => {
     this.setState({
-      newPost: false
+      newPost: false,
+      postId: ''
     })
   }
 
@@ -70,9 +81,11 @@ export default class GamePosts extends Component {
         <ViewPost
           user={this.props.user}
           postId={this.state.postId}
+          handleNewPostSubmit={this.handleNewPostSubmit}
         />
       )
-    } else {
+    }
+    if (!this.state.newPost) {
       return (
         <div>
           <h1>Posts for {this.props.gameTitle}</h1>
@@ -83,7 +96,7 @@ export default class GamePosts extends Component {
                 :
                 "No posts for this game"
             }
-            <li><button onClick={this.handleNewPostClick}></button></li>
+            <li><button onClick={this.handleNewPostClick}>New Post</button></li>
           </ul>
         </div>
       )
