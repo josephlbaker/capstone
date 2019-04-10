@@ -42,16 +42,17 @@ class App extends Component {
     if (localStorage.token) {
       axios({
         method: "get",
-        url: `http://localhost:3001/users/`,
+        url: `http://localhost:3001/users`,
         headers: { authorization: `Bearer ${localStorage.token}` }
       })
+        // .then(response => response.json())
         .then(response => {
           console.log('App successfully recieves a response')
           this.setState({
             isLoggedIn: true,
             // userId: response.userId
-            user: response.data.user
-          })
+            user: response.data
+          });
         })
         .catch(err => console.log(err))
     } else {
@@ -106,7 +107,7 @@ class App extends Component {
           // username: res.data.user.username,
           redirect: true,
           // userId: res.data.user._id,
-          user: user
+          user
         });
         console.log(this.state.user);
       })

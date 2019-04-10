@@ -31,10 +31,10 @@ export default class CommentList extends Component {
 
   _renderComments = (comment, index) => {
     if (comment.post._id === this.props.post._id && this.props.user._id === comment.user) {
-      return (<li key={index}>{comment.content} - {comment.user} <button onClick={() => { this.handleDeleteComment(comment._id) }}>Delete Comment</button></li>)
+      return (<li key={index}>{comment.content} - {comment.user.username} <button onClick={() => { this.handleDeleteComment(comment._id) }}>Delete Comment</button></li>)
     }
     if (comment.post._id === this.props.post._id) {
-      return (<li key={index}>{comment.content} - {comment.user}</li>)
+      return (<li key={index}>{comment.content} - {comment.user.username}</li>)
     }
     else {
       return null;
