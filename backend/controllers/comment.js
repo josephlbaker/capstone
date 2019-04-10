@@ -23,7 +23,8 @@ module.exports = {
   },
 
   deleteComment: (req, res) => {
-    let commentId = req.body._id;
+    let commentId = req.params.id;
+    console.log(commentId)
     db.Comment.findOneAndDelete({ _id: commentId }, (err, foundComment) => {
       if (err) return console.log(err);
       console.log(foundComment);

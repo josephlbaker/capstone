@@ -3,12 +3,15 @@ import axios from 'axios';
 
 import EditPost from './EditPost';
 import CommentList from './CommentList';
+import AddComment from './AddComment';
 
 export default class ViewPost extends Component {
 
   state = {
     post: {},
-    edit: ''
+    edit: '',
+    gamePosts: false,
+    myPosts: false
   }
 
   componentDidMount() {
@@ -17,6 +20,18 @@ export default class ViewPost extends Component {
     })
       .then(results => results.json())
       .then(data => this.setState({ post: data }))
+  }
+
+  returnToGamePosts = () => {
+    if (this.props.postId) {
+      this.setState({
+        gamePosts: true
+      })
+    } else {
+      this.setState({
+        myPosts: true
+      })
+    }
   }
 
   handleClick = () => {
@@ -44,6 +59,16 @@ export default class ViewPost extends Component {
   }
 
   render() {
+    // if (this.state.gamePosts) {
+    //   return (
+    //     <GamePosts />
+    //   )
+    // }
+    // if (this.state.myPosts) {
+    //   return (
+    //     <Post />
+    //   )
+    // }
     if (this.state.edit === true) {
       return (
         <EditPost post={this.state.post} />
@@ -52,6 +77,7 @@ export default class ViewPost extends Component {
     if (this.props.user._id === this.state.post.user) {
       return (
         <div>
+          <button onClick={this.returnToGamePosts}>Go back</button>
           {this.state.post.title}
           {this.state.post.gameTitle}
           {this.state.post.content}
@@ -60,12 +86,16 @@ export default class ViewPost extends Component {
           <button name="editPost" onClick={this.handleClick}>Edit</button>
           <CommentList user={this.props.user}
             post={this.state.post} />
+          <AddComment
+            post={this.state.post}
+            user={this.props.user} />
         </div>
       )
     }
     if (this.state.post.isEvent) {
       return (
         <div>
+          <button onClick={this.returnToGamePosts}>Go back</button>
           {this.state.post.title}
           {this.state.post.gameTitle}
           {this.state.post.content}
@@ -75,18 +105,25 @@ export default class ViewPost extends Component {
           <button name="joinEvent" onClick={this.handleJoin}>Join Event</button>
           <CommentList user={this.props.user}
             post={this.state.post} />
+          <AddComment
+            post={this.state.post}
+            user={this.props.user} />
         </div>
       )
     }
     return (
       <div>
+        <button onClick={this.returnToGamePosts}>Go back</button>
         {this.state.post.title}
         {this.state.post.gameTitle}
         {this.state.post.content}
         {this.state.post.platform}
         {this.state.post.players}
         <CommentList user={this.props.user}
-          postId={this.props.postId} />
+          post={this.state.post} />
+        <AddComment
+          post={this.state.post}
+          user={this.props.user} />
       </div>
     )
   }
