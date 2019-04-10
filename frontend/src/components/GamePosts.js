@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { debounce } from 'throttle-debounce'
+
 
 import ViewPost from './ViewPost';
 import NewPost from './NewPost';
@@ -23,13 +25,21 @@ export default class GamePosts extends Component {
   }
 
   componentDidUpdate() {
-    fetch("http://localhost:3001/posts", {
-      method: "GET"
-    })
-      .then(results => results.json())
-      .then(data => this.setState({ posts: data }))
-      .catch(function (error) { console.log(error) });
+    debounce(500, () => {
+      fetch("http://localhost:3001/posts", {
+        method: "GET"
+      })
+        .then(results => results.json())
+        .then(data => this.setState({ posts: data }))
+        .catch(function (error) { console.log(error) });
+    });
   }
+
+  handleInput = event => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
 
   handleClick(result) {
     this.setState({
@@ -43,12 +53,36 @@ export default class GamePosts extends Component {
     })
   }
 
-  handleNewPostSubmit = () => {
-    this.setState({
-      newPost: false,
-      postId: ''
-    })
-  }
+  handleNewPost = event => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:3001/posts/createpost", {
+        title: this.state.title,
+        content: this.state.content,
+        user: this.props.user,
+        // user: this.state.userId,
+        // timestamp: this.state.timestamp,
+        // gameTitle: this.state.gameTitle,
+        platform: this.state.platform,
+        gameId: this.props.gameId,
+        gameTitle: this.props.gameTitle,
+        isEvent: this.state.isEvent
+      })
+      .then(res => {
+        console.log(res);
+        let newPost = res.data;
+        this.state.posts.push(newPost)
+
+        this.setState({
+          posts: this.state.posts,
+          newPost: false,
+          postId: ''
+        })
+      })
+      .catch(err => {
+        console.log("Error", err);
+      })
+  };
 
   _renderPosts = (post, index) => {
     if (post.gameId === this.props.gameId.toString()) {
@@ -73,7 +107,8 @@ export default class GamePosts extends Component {
         <NewPost user={this.props.user}
           gameTitle={this.props.gameTitle}
           gameId={this.props.gameId}
-          handleNewPostSubmit={this.handleNewPostSubmit} />
+          handleNewPost={this.handleNewPost}
+          handleInput={this.handleInput} />
       )
     }
     if (this.state.postId) {

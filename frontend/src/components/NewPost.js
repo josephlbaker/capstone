@@ -7,33 +7,9 @@ export default class NewPost extends Component {
     isEvent: false
   }
 
-  handleNewPost = event => {
-    event.preventDefault();
-    axios
-      .post("http://localhost:3001/posts/createpost", {
-        title: this.state.title,
-        content: this.state.content,
-        user: this.props.user,
-        // user: this.state.userId,
-        // timestamp: this.state.timestamp,
-        // gameTitle: this.state.gameTitle,
-        platform: this.state.platform,
-        gameId: this.props.gameId,
-        gameTitle: this.props.gameTitle,
-        isEvent: this.state.isEvent
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log("Error");
-      })
-    this.props.handleNewPostSubmit();
-  };
-
   handleCancel = event => {
     event.preventDefault();
-    this.props.handleNewPostSubmit();
+    // this.props.handleNewPostSubmit();
   }
 
   handleCheckbox = event => {
@@ -49,28 +25,23 @@ export default class NewPost extends Component {
     }
   }
 
-  handleInput = event => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  };
-
   render() {
     return (
       <div>
         <div className="new-post">
           <h2>Add a Post</h2>
           <button name="cancel" onClick={this.handleCancel}>Cancel</button>
-          <form>
-            <input name="title" placeholder="Title" onChange={this.handleInput} />
-            <input name="content" placeholder="Content" onChange={this.handleInput} />
+
+          <form onSubmit={this.props.handleNewPost}>
+            <input name="title" placeholder="Title" onChange={this.props.handleInput} />
+            <input name="content" placeholder="Content" onChange={this.props.handleInput} />
             {/* <input name="timestamp" placeholder="Current Time" onChange={this.props.handleInput} /> */}
             {/* <input name="gameTitle" placeholder="Game" onChange={this.props.handleInput} /> */}
-            <input name="platform" placeholder="platform" onChange={this.handleInput} />
+            <input name="platform" placeholder="platform" onChange={this.props.handleInput} />
             <label htmlFor="isEvent">Is this an event?</label>
             <input type="checkbox" name="isEvent" onChange={this.handleCheckbox} />
             <p>Other players will be able to join</p>
-            <button name="submit" onClick={this.handleNewPost}>Submit</button>
+            <input type="submit" value="Submit" name="submit" />
           </form>
         </div>
       </div>

@@ -17,6 +17,7 @@ export default class AddComment extends Component {
       .catch(err => {
         console.log("Error");
       })
+    this.props.handleNewCommentSubmit();
   };
 
   handleInput = event => {

@@ -79,9 +79,6 @@ export default class ViewPost extends Component {
           <button name="editPost" onClick={this.handleClick}>Edit</button>
           <CommentList user={this.props.user}
             post={this.state.post} />
-          <AddComment
-            post={this.state.post}
-            user={this.props.user} />
         </div>
       )
     }
@@ -98,9 +95,6 @@ export default class ViewPost extends Component {
           <button name="joinEvent" onClick={this.handleJoin}>Join Event</button>
           <CommentList user={this.props.user}
             post={this.state.post} />
-          <AddComment
-            post={this.state.post}
-            user={this.props.user} />
         </div>
       )
     }
@@ -114,9 +108,6 @@ export default class ViewPost extends Component {
         {this.state.post.players}
         <CommentList user={this.props.user}
           post={this.state.post} />
-        <AddComment
-          post={this.state.post}
-          user={this.props.user} />
       </div>
     )
   }

@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import ViewPost from './ViewPost';
+import { debounce } from 'throttle-debounce'
 
 export default class Post extends Component {
 
   state = {
     posts: [],
-    postId: ''
+    postId: '',
+    newPost: false
   }
 
   handleClick(result) {
@@ -21,6 +23,24 @@ export default class Post extends Component {
       .then(results => results.json())
       .then(data => this.setState({ posts: data }))
       .catch(function (error) { console.log(error) });
+  }
+
+  componentDidUpdate() {
+    debounce(500, () => {
+      fetch("http://localhost:3001/posts", {
+        method: "GET"
+      })
+        .then(results => results.json())
+        .then(data => this.setState({ posts: data }))
+        .catch(function (error) { console.log(error) });
+    });
+  }
+
+  handleNewPostSubmit = () => {
+    this.setState({
+      newPost: false,
+      postId: ''
+    })
   }
 
   _renderPosts = (post, index) => {
@@ -41,6 +61,7 @@ export default class Post extends Component {
         <ViewPost
           user={this.props.user}
           postId={this.state.postId}
+          handleNewPostSubmit={this.handleNewPostSubmit}
         />
       )
     } else {

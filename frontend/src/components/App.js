@@ -5,7 +5,6 @@ import Nav from './Nav';
 import GamesList from './GamesList';
 
 class App extends Component {
-
   state = {
     firstName: "",
     lastName: "",
@@ -16,32 +15,17 @@ class App extends Component {
     user: ""
   }
 
-  // componentDidMount() {
-  //   const user = localStorage.user ? JSON.parse(localStorage.user) : "";
-  //   localStorage.token
-  //     ? this.setState({
-  //       isLoggedIn: true,
-  //       user: user
-  //     })
-  //     : this.setState({
-  //       isLoggedIn: false
-  //     });
-  //   console.log(localStorage)
-  // }
-
   componentDidMount() {
     if (localStorage.token) {
       axios({
         method: "get",
-        url: `http://localhost:3001/users`,
+        url: `http://localhost:3001/users/`,
         headers: { authorization: `Bearer ${localStorage.token}` }
       })
-        // .then(response => response.json())
         .then(response => {
-          console.log('App successfully recieves a response')
+          console.log('App successfully recieves a response', response)
           this.setState({
             isLoggedIn: true,
-            // userId: response.userId
             user: response.data
           });
         })
