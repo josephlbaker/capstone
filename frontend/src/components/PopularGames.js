@@ -1,9 +1,20 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
 
+import GamePosts from './GamePosts';
+
 export default class PopularGames extends Component {
   state = {
+    gameId: '',
+    gameTitle: '',
     results: []
+  }
+
+  handleClick(result) {
+    this.setState({
+      gameId: result.id,
+      gameTitle: result.name
+    })
   }
 
   componentDidMount() {
@@ -29,11 +40,29 @@ export default class PopularGames extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h1>Hello</h1>
-      </div>
-    )
+    if (this.state.results.length < 1) {
+      return null;
+    }
+
+    if (this.state.gameTitle) {
+      return (
+        <GamePosts
+          user={this.props.user}
+          gameId={this.state.gameId}
+          gameTitle={this.state.gameTitle}
+        />
+      )
+    }
+
+    const resultsMarkup = this.state.results.map((result, key) => {
+      return (
+        <div key={key}>
+          <p>Name: {result.name}</p>
+          <img onClick={() => { this.handleClick(result) }} src={result.image.small_url} alt={`${result.name}`} />
+        </div>
+      )
+    })
+    return resultsMarkup;
   }
 }
 
