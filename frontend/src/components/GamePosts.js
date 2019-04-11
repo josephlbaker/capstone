@@ -154,6 +154,7 @@ export default class GamePosts extends Component {
     if (!this.state.newPost) {
       return (
         <div>
+          <button onClick={this.props.handleGoBack}>Go back</button>
           <h1>Posts for {this.props.gameTitle}</h1>
           <ul>
             {
