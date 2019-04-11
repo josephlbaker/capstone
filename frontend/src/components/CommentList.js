@@ -8,7 +8,8 @@ export default class CommentList extends Component {
 
   state = {
     comments: [],
-    newComment: false
+    newComment: false,
+    content: ''
   }
 
   componentDidMount() {
@@ -46,13 +47,41 @@ export default class CommentList extends Component {
       })
   }
 
+  handleNewComment = event => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:3001/comments/createcomment", {
+        content: this.state.content,
+        user: this.props.user,
+        post: this.props.post
+      })
+      .then(res => {
+        let myNewComment = res.data;
+        this.state.comments.push(myNewComment)
+        console.log(res);
+        this.setState({
+          comments: this.state.comments,
+          newComment: false
+        })
+      })
+      .catch(err => {
+        console.log("Error");
+      })
+  };
+
+  handleInput = event => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
   handleNewCommentClick = () => {
     this.setState({
       newComment: true
     })
   }
 
-  handleNewCommentSubmit = () => {
+  cancelComment = () => {
     this.setState({
       newComment: false
     })
@@ -75,7 +104,9 @@ export default class CommentList extends Component {
     if (this.state.newComment) {
       return (
         <AddComment
-          handleNewCommentSubmit={this.handleNewCommentSubmit}
+          handleInput={this.handleInput}
+          handleNewComment={this.handleNewComment}
+          cancelComment={this.cancelComment}
           post={this.props.post}
           user={this.props.user} />
       );

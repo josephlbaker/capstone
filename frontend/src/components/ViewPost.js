@@ -70,7 +70,7 @@ export default class ViewPost extends Component {
     if (this.props.user._id === this.state.post.user) {
       return (
         <div>
-          <button onClick={this.returnToGamePosts}>Go back</button>
+          <button onClick={this.props.handleGoBack}>Go back</button>
           {this.state.post.title}
           {this.state.post.gameTitle}
           {this.state.post.content}
@@ -85,7 +85,7 @@ export default class ViewPost extends Component {
     if (this.state.post.isEvent) {
       return (
         <div>
-          <button onClick={this.returnToGamePosts}>Go back</button>
+          <button onClick={this.props.handleGoBack}>Go back</button>
           {this.state.post.title}
           {this.state.post.gameTitle}
           {this.state.post.content}
@@ -100,7 +100,7 @@ export default class ViewPost extends Component {
     }
     return (
       <div>
-        <button onClick={this.returnToGamePosts}>Go back</button>
+        <button onClick={this.props.handleGoBack}>Go back</button>
         {this.state.post.title}
         {this.state.post.gameTitle}
         {this.state.post.content}

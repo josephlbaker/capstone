@@ -12,7 +12,8 @@ export default class GamePosts extends Component {
   state = {
     posts: [],
     postId: '',
-    newPost: false
+    newPost: false,
+    isEvent: false
   }
 
   componentDidMount() {
@@ -35,6 +36,19 @@ export default class GamePosts extends Component {
     });
   }
 
+  handleCheckbox = event => {
+    if (this.state.isEvent === false || this.state.isEvent === 'off') {
+      this.setState({
+        isEvent: true
+      })
+    }
+    if (this.state.isEvent === true || this.state.isEvent === 'on') {
+      this.setState({
+        isEvent: false
+      })
+    }
+  }
+
   handleInput = event => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -50,6 +64,14 @@ export default class GamePosts extends Component {
   handleNewPostClick = () => {
     this.setState({
       newPost: true
+    })
+  }
+
+
+  handleCancel = (e) => {
+    e.preventDefault();
+    this.setState({
+      newPost: false
     })
   }
 
@@ -70,8 +92,8 @@ export default class GamePosts extends Component {
       })
       .then(res => {
         console.log(res);
-        let newPost = res.data;
-        this.state.posts.push(newPost)
+        let myNewPost = res.data;
+        this.state.posts.push(myNewPost)
 
         this.setState({
           posts: this.state.posts,
@@ -83,6 +105,12 @@ export default class GamePosts extends Component {
         console.log("Error", err);
       })
   };
+
+  handleGoBack = () => {
+    this.setState({
+      postId: ''
+    })
+  }
 
   _renderPosts = (post, index) => {
     if (post.gameId === this.props.gameId.toString()) {
@@ -108,12 +136,15 @@ export default class GamePosts extends Component {
           gameTitle={this.props.gameTitle}
           gameId={this.props.gameId}
           handleNewPost={this.handleNewPost}
-          handleInput={this.handleInput} />
+          handleInput={this.handleInput}
+          handleCancel={this.handleCancel}
+        />
       )
     }
     if (this.state.postId) {
       return (
         <ViewPost
+          handleGoBack={this.handleGoBack}
           user={this.props.user}
           postId={this.state.postId}
           handleNewPostSubmit={this.handleNewPostSubmit}
