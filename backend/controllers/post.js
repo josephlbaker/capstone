@@ -32,7 +32,10 @@ module.exports = {
       //   console.log(book._creator);
       // });
 
-      res.json(newPostCreated);
+      // res.json(newPostCreated);
+      newPostCreated.populate('user', () => {
+        res.json(newPostCreated);
+      })
     });
   },
 

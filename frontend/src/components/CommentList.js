@@ -13,6 +13,10 @@ export default class CommentList extends Component {
   }
 
   componentDidMount() {
+    this.fetchComments();
+  }
+
+  fetchComments = () => {
     fetch(`http://localhost:3001/comments`, {
       method: 'GET'
     })
@@ -63,6 +67,7 @@ export default class CommentList extends Component {
           comments: this.state.comments,
           newComment: false
         })
+        this.fetchComments();
       })
       .catch(err => {
         console.log("Error");

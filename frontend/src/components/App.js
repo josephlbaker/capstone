@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../styles/App.css';
 
 import Nav from './Nav';
 import GamesList from './GamesList';

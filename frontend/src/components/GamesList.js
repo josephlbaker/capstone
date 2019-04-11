@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import { Button } from 'semantic-ui-react'
+import '../styles/GamesList.css';
+
+
 import LogIn from './LogIn';
 import SignUp from './SignUp';
 import SearchBar from './SearchBar';
@@ -37,8 +41,8 @@ export default class GamesList extends Component {
     } else {
       return (
         <div>
-          <button onClick={this.handleClick.bind(this, 'login')}>Login</button>
-          <button onClick={this.handleClick.bind(this, 'signup')}>Signup</button>
+          <Button className="registration" onClick={this.handleClick.bind(this, 'login')}>Login</Button>
+          <Button className="registration" onClick={this.handleClick.bind(this, 'signup')}>Signup</Button>
           {this.renderSubComp()}
         </div>
       )
