@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { debounce } from 'throttle-debounce'
-import { Container, Segment, Icon } from 'semantic-ui-react'
+import { Container, Segment, Icon, Menu } from 'semantic-ui-react'
 
 import '../styles/GamePosts.css';
 
@@ -164,10 +164,10 @@ export default class GamePosts extends Component {
     if (!this.state.newPost) {
       return (
         <div className="body">
-          <div className="nav-buttons">
-            <button className="back" onClick={this.props.handleGoBack}><Icon name='arrow left' size='large' /></button>
-            <button className="new-post" onClick={this.handleNewPostClick}><Icon name='edit' size='large' /></button>
-          </div>
+          <Menu inverted color="blue" className="top-nav">
+            <Menu.Item className="back"><button className="back" onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+            <Menu.Item className="new-post" position='right'><button className="new-post" onClick={this.handleNewPostClick}><Icon inverted name='edit' size='large' /></button></Menu.Item>
+          </Menu>
           <h1>Posts for {this.props.gameTitle}</h1>
           <Container>
             {

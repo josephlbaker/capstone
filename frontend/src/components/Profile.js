@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import '../styles/Profile.css';
+import { Segment, Container, Menu } from 'semantic-ui-react'
+
 
 import EditProfile from './EditProfile';
 import LogOut from './LogOut';
@@ -52,8 +55,10 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Your profile</h1>
+      <div className="profile-container">
+        <Menu inverted color="blue" className="top-nav">
+          <Menu.Item><h3>My Profile</h3></Menu.Item>
+        </Menu>
         {this.props.user.firstName}
         {this.props.user.lastName}
         {this.props.user.username}

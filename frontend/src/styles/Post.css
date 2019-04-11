@@ -1,0 +1,13 @@
+.parent{
+  min-height: 100vh;
+  background-color: #f2f2f2;
+}
+
+h1 {
+  margin-bottom: 20px !important;
+}
+
+.edit-post {
+  text-align: right !important;
+}
+

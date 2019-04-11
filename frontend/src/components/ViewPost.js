@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Container, Segment, Icon, Menu } from 'semantic-ui-react'
+
 
 import EditPost from './EditPost';
 import CommentList from './CommentList';
@@ -73,10 +75,14 @@ export default class ViewPost extends Component {
         </div>
       )
     }
+
     if (this.props.user._id === this.state.post.user) {
       return (
         <div>
-          <button onClick={this.props.handleGoBack}>Go back</button>
+          <Menu inverted color="blue" className="top-nav">
+            <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+            {/* <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item> */}
+          </Menu>
           {this.state.post.title}
           {this.state.post.gameTitle}
           {this.state.post.content}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { Button, Grid, Container } from 'semantic-ui-react'
+import { Button, Grid, Container, Image, Menu } from 'semantic-ui-react'
 import '../styles/GamesList.css';
 
 
@@ -31,16 +31,21 @@ export default class GamesList extends Component {
 
     if (this.props.isLoggedIn) {
       return (
-        <div>
+        <div className="search-container">
+          <Menu inverted color="blue" className="top-nav">
+            <Menu.Item><h3>Search</h3></Menu.Item>
+          </Menu>
           <SearchBar
             user={this.props.user}
           />
           <div className="games-gallery"></div>
+          {/* <p>Search thousands of game titles...</p> */}
         </div>
       )
     } else {
       return (
         <div className="registration-buttons">
+          <div><Image src="../images/logo2.jpeg" /></div>
           {this.renderSubComp()}
           <Container>
             <Grid>

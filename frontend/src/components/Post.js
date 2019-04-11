@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import ViewPost from './ViewPost';
 import { debounce } from 'throttle-debounce'
+import { Segment, Container, Menu } from 'semantic-ui-react'
+
+import '../styles/Post.css';
+
 
 export default class Post extends Component {
 
@@ -56,9 +60,17 @@ export default class Post extends Component {
 
   _renderPosts = (post, index) => {
     if (post.user.username === this.props.user.username) {
-      return <li key={index}>{post.title} - {post.content} - {post.user.username} - {post.gameTitle}
-        <button name="viewPost" onClick={() => { this.handleClick(post) }}>View</button>
-      </li>
+      return (
+        <Segment raised key={index}>
+          <h3>{post.title}</h3> <p className="username">-{post.user.username}</p>
+          <br />
+          <p className="game-title">{post.gameTitle}</p>
+          <br />
+          <p className="content">{post.content}</p>
+          <br />
+          <button className="edit-post" name="viewPost" onClick={() => { this.handleClick(post) }}>View Details</button>
+        </Segment>
+      )
     } else {
       return null;
     }
@@ -78,16 +90,18 @@ export default class Post extends Component {
       )
     } else {
       return (
-        <div>
-          <h1>Posts</h1>
-          <ul>
+        <div className="parent">
+          <Menu inverted color="blue" className="top-nav">
+            <Menu.Item><h3>My Feed</h3></Menu.Item>
+          </Menu>
+          <Container>
             {
               posts ?
                 posts.map(this._renderPosts)
                 :
-                "No posts for this game"
+                "No posts yet..."
             }
-          </ul>
+          </Container>
         </div>
       );
     }
