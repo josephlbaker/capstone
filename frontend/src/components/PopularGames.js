@@ -10,6 +10,12 @@ export default class PopularGames extends Component {
     results: []
   }
 
+  handleGoBack = () => {
+    this.setState({
+      gameTitle: ''
+    })
+  }
+
   handleClick(result) {
     this.setState({
       gameId: result.id,
@@ -47,6 +53,7 @@ export default class PopularGames extends Component {
     if (this.state.gameTitle) {
       return (
         <GamePosts
+          handleGoBack={this.handleGoBack}
           user={this.props.user}
           gameId={this.state.gameId}
           gameTitle={this.state.gameTitle}

@@ -66,14 +66,13 @@ export default class EditPost extends Component {
   render() {
     return (
       <div className="new-post">
+        <button onClick={this.props.handleBackToPosts}>Go back</button>
         <h2>Edit your Post</h2>
         <form>
           <p>Title</p>
           <input name="title" placeholder={this.state.title} onChange={this.handleInput} />
           <p>Content</p>
           <input name="content" placeholder={this.state.content} onChange={this.handleInput} />
-          {/* <input name="timestamp" placeholder="Current Time" onChange={this.props.handleInput} /> */}
-          {/* <input name="gameTitle" placeholder="Game" onChange={this.props.handleInput} /> */}
           <p>Platform</p>
           <input name="platform" placeholder={this.state.platform} onChange={this.handleInput} />
           <label htmlFor="isEvent">Is this an event?</label>

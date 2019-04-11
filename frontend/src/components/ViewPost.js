@@ -33,6 +33,12 @@ export default class ViewPost extends Component {
     })
   }
 
+  handleBackToPosts = () => {
+    this.setState({
+      edit: false
+    })
+  }
+
   handleJoin = (event) => {
     event.preventDefault();
     if (!this.state.post.players.includes(this.props.user.username)) {
@@ -52,19 +58,13 @@ export default class ViewPost extends Component {
   }
 
   render() {
-    // if (this.state.gamePosts) {
-    //   return (
-    //     <GamePosts />
-    //   )
-    // }
-    // if (this.state.myPosts) {
-    //   return (
-    //     <Post />
-    //   )
-    // }
     if (this.state.edit === true) {
       return (
-        <EditPost post={this.state.post} />
+        <div>
+          <EditPost
+            handleBackToPosts={this.handleBackToPosts}
+            post={this.state.post} />
+        </div>
       )
     }
     if (this.props.user._id === this.state.post.user) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import { Button } from 'semantic-ui-react'
+import { Button, Grid, Container } from 'semantic-ui-react'
 import '../styles/GamesList.css';
 
 
@@ -40,10 +40,16 @@ export default class GamesList extends Component {
       )
     } else {
       return (
-        <div>
-          <Button className="registration" onClick={this.handleClick.bind(this, 'login')}>Login</Button>
-          <Button className="registration" onClick={this.handleClick.bind(this, 'signup')}>Signup</Button>
+        <div className="registration-buttons">
           {this.renderSubComp()}
+          <Container>
+            <Grid>
+              <Grid.Column textAlign="center">
+                <Button className="registration" onClick={this.handleClick.bind(this, 'login')}>Login</Button>
+                <Button className="registration" onClick={this.handleClick.bind(this, 'signup')}>Signup</Button>
+              </Grid.Column>
+            </Grid>
+          </Container>
         </div>
       )
     }

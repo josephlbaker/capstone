@@ -43,6 +43,12 @@ export default class Post extends Component {
     })
   }
 
+  handleGoBack = () => {
+    this.setState({
+      postId: ''
+    })
+  }
+
   _renderPosts = (post, index) => {
     if (post.user.username === this.props.user.username) {
       return <li key={index}>{post.title} - {post.content} - {post.user.username}
@@ -59,6 +65,7 @@ export default class Post extends Component {
     if (this.state.postId) {
       return (
         <ViewPost
+          handleGoBack={this.handleGoBack}
           user={this.props.user}
           postId={this.state.postId}
           handleNewPostSubmit={this.handleNewPostSubmit}

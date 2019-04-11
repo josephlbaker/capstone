@@ -43,6 +43,7 @@ export default class Nav extends Component {
   render() {
     return (
       <div className="nav-components">
+        {this.renderSubComp()}
         <ul>
           <li onClick={this.handleClick.bind(this, 'games')}>Games</li>
           <li onClick={this.handleClick.bind(this, 'posts')}>Posts</li>
@@ -50,7 +51,6 @@ export default class Nav extends Component {
           <li onClick={this.handleClick.bind(this, 'popular')}>Popular Games</li>
           <li><LogOut handleLogOut={this.props.handleLogOut} /></li>
         </ul>
-        {this.renderSubComp()}
       </div>
     )
   }
