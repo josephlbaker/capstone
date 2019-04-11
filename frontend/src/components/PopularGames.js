@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
 
+import '../styles/PopularGames.css';
+
 import GamePosts from './GamePosts';
 
 export default class PopularGames extends Component {
@@ -63,8 +65,8 @@ export default class PopularGames extends Component {
 
     const resultsMarkup = this.state.results.map((result, key) => {
       return (
-        <div key={key}>
-          <p>Name: {result.name}</p>
+        <div className="image-container" key={key}>
+          {/* <p>Name: {result.name}</p> */}
           <img onClick={() => { this.handleClick(result) }} src={result.image.small_url} alt={`${result.name}`} />
         </div>
       )
