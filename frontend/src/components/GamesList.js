@@ -6,6 +6,23 @@ import SearchBar from './SearchBar';
 
 export default class GamesList extends Component {
 
+  state = {
+    render: ''
+  }
+
+  handleClick(compName, e) {
+    this.setState({ render: compName });
+  }
+
+  renderSubComp() {
+    switch (this.state.render) {
+      case 'login': return <LogIn handleInput={this.props.handleInput}
+        handleLogin={this.props.handleLogin} />
+      case 'signup': return <SignUp handleSignUp={this.props.handleSignUp}
+        handleInput={this.props.handleInput} />
+    }
+  }
+
   render() {
 
     if (this.props.isLoggedIn) {
@@ -20,10 +37,9 @@ export default class GamesList extends Component {
     } else {
       return (
         <div>
-          <LogIn handleInput={this.props.handleInput}
-            handleLogin={this.props.handleLogin} />
-          <SignUp handleSignUp={this.props.handleSignUp}
-            handleInput={this.props.handleInput} />
+          <button onClick={this.handleClick.bind(this, 'login')}>Login</button>
+          <button onClick={this.handleClick.bind(this, 'signup')}>Signup</button>
+          {this.renderSubComp()}
         </div>
       )
     }
