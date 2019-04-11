@@ -8,7 +8,7 @@ import PopularGames from './PopularGames';
 export default class Nav extends Component {
 
   state = {
-    render: ''
+    render: 'popular'
   }
 
   handleClick(compName, e) {

@@ -1,10 +1,31 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import { Button } from 'semantic-ui-react'
+import '../styles/GamesList.css';
+
+
 import LogIn from './LogIn';
 import SignUp from './SignUp';
 import SearchBar from './SearchBar';
 
 export default class GamesList extends Component {
+
+  state = {
+    render: ''
+  }
+
+  handleClick(compName, e) {
+    this.setState({ render: compName });
+  }
+
+  renderSubComp() {
+    switch (this.state.render) {
+      case 'login': return <LogIn handleInput={this.props.handleInput}
+        handleLogin={this.props.handleLogin} />
+      case 'signup': return <SignUp handleSignUp={this.props.handleSignUp}
+        handleInput={this.props.handleInput} />
+    }
+  }
 
   render() {
 
@@ -20,10 +41,9 @@ export default class GamesList extends Component {
     } else {
       return (
         <div>
-          <LogIn handleInput={this.props.handleInput}
-            handleLogin={this.props.handleLogin} />
-          <SignUp handleSignUp={this.props.handleSignUp}
-            handleInput={this.props.handleInput} />
+          <Button className="registration" onClick={this.handleClick.bind(this, 'login')}>Login</Button>
+          <Button className="registration" onClick={this.handleClick.bind(this, 'signup')}>Signup</Button>
+          {this.renderSubComp()}
         </div>
       )
     }

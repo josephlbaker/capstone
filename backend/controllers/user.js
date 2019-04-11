@@ -9,8 +9,8 @@ module.exports = {
       res.json(foundUsers);
     });
   },
-  showOne: (req, res) => {
-    if (req.user.id) {
+  show: (req, res) => {
+    if (req.userId) {
       db.User.findById(req.userId, (err, foundUser) => {
         res.json(foundUser);
       });

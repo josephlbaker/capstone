@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { debounce } from 'throttle-debounce'
+
 
 import ViewPost from './ViewPost';
+import NewPost from './NewPost';
+import PopularGames from './PopularGames';
 
 export default class GamePosts extends Component {
 
   state = {
     posts: [],
     postId: '',
+    newPost: false,
     isEvent: false
   }
 
@@ -20,33 +25,15 @@ export default class GamePosts extends Component {
       .catch(function (error) { console.log(error) });
   }
 
-  handleClick(result) {
-    this.setState({
-      postId: result._id,
-    })
-  }
-
-  _renderPosts = (post, index) => {
-    if (post.gameId === this.props.gameId.toString() && post.isEvent) {
-      return (
-        <li key={index}>
-          {post.title} - {post.content} - {post.user.username}
-          <div>
-            <button name="editPost" onClick={() => { this.handleClick(post) }}>View</button>
-          </div>
-        </li>
-      )
-    }
-    else if (post.gameId === this.props.gameId.toString()) {
-      return (
-        <li key={index}>
-          {post.title} - {post.content} - {post.user.username}
-          <button name="editPost" onClick={() => { this.handleClick(post) }}>View</button>
-        </li>
-      )
-    } else {
-      return null;
-    }
+  componentDidUpdate() {
+    debounce(500, () => {
+      fetch("http://localhost:3001/posts", {
+        method: "GET"
+      })
+        .then(results => results.json())
+        .then(data => this.setState({ posts: data }))
+        .catch(function (error) { console.log(error) });
+    });
   }
 
   handleCheckbox = event => {
@@ -68,6 +55,26 @@ export default class GamePosts extends Component {
     });
   };
 
+  handleClick(result) {
+    this.setState({
+      postId: result._id,
+    })
+  }
+
+  handleNewPostClick = () => {
+    this.setState({
+      newPost: true
+    })
+  }
+
+
+  handleCancel = (e) => {
+    e.preventDefault();
+    this.setState({
+      newPost: false
+    })
+  }
+
   handleNewPost = event => {
     event.preventDefault();
     axios
@@ -85,23 +92,66 @@ export default class GamePosts extends Component {
       })
       .then(res => {
         console.log(res);
+        let myNewPost = res.data;
+        this.state.posts.push(myNewPost)
+
+        this.setState({
+          posts: this.state.posts,
+          newPost: false,
+          postId: ''
+        })
       })
       .catch(err => {
-        console.log("Error");
+        console.log("Error", err);
       })
   };
+
+  handleGoBack = () => {
+    this.setState({
+      postId: ''
+    })
+  }
+
+  _renderPosts = (post, index) => {
+    if (post.gameId === this.props.gameId.toString()) {
+      return (
+        <li key={index}>
+          {post.title} - {post.content} - {post.user.username}
+          <div>
+            <button name="editPost" onClick={() => { this.handleClick(post) }}>View</button>
+          </div>
+        </li>
+      )
+    } else {
+      return null;
+    }
+  }
 
   render() {
     const { posts } = this.state;
 
+    if (this.state.newPost) {
+      return (
+        <NewPost user={this.props.user}
+          gameTitle={this.props.gameTitle}
+          gameId={this.props.gameId}
+          handleNewPost={this.handleNewPost}
+          handleInput={this.handleInput}
+          handleCancel={this.handleCancel}
+        />
+      )
+    }
     if (this.state.postId) {
       return (
         <ViewPost
+          handleGoBack={this.handleGoBack}
           user={this.props.user}
           postId={this.state.postId}
+          handleNewPostSubmit={this.handleNewPostSubmit}
         />
       )
-    } else {
+    }
+    if (!this.state.newPost) {
       return (
         <div>
           <h1>Posts for {this.props.gameTitle}</h1>
@@ -112,22 +162,8 @@ export default class GamePosts extends Component {
                 :
                 "No posts for this game"
             }
+            <li><button onClick={this.handleNewPostClick}>New Post</button></li>
           </ul>
-
-          <div className="new-post">
-            <h2>Add a Post</h2>
-            <form>
-              <input name="title" placeholder="Title" onChange={this.handleInput} />
-              <input name="content" placeholder="Content" onChange={this.handleInput} />
-              {/* <input name="timestamp" placeholder="Current Time" onChange={this.props.handleInput} /> */}
-              {/* <input name="gameTitle" placeholder="Game" onChange={this.props.handleInput} /> */}
-              <input name="platform" placeholder="platform" onChange={this.handleInput} />
-              <label htmlFor="isEvent">Is this an event?</label>
-              <input type="checkbox" name="isEvent" onChange={this.handleCheckbox} />
-              <p>Other players will be able to join</p>
-              <button name="submit" onClick={this.handleNewPost}>Submit</button>
-            </form>
-          </div>
         </div>
       )
     }

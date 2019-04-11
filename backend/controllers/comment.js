@@ -4,6 +4,7 @@ module.exports = {
   index: (req, res) => {
     db.Comment.find({})
       .populate("post")
+      .populate("user")
       .exec((err, foundComments) => {
         if (err) return console.error(err);
         res.json(foundComments);

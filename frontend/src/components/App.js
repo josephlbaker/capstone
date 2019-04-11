@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../styles/App.css';
 
 import Nav from './Nav';
 import GamesList from './GamesList';
 
 class App extends Component {
-
   state = {
     firstName: "",
     lastName: "",
@@ -13,30 +13,8 @@ class App extends Component {
     username: "",
     password: "",
     isLoggedIn: "",
-    preference1: "",
-    preference2: "",
-    title: "",
-    content: "",
-    timestamp: "",
-    gameTitle: "",
-    platform: "",
-    userId: "",
-    user: "",
-    profileId: ""
+    user: ""
   }
-
-  // componentDidMount() {
-  //   const user = localStorage.user ? JSON.parse(localStorage.user) : "";
-  //   localStorage.token
-  //     ? this.setState({
-  //       isLoggedIn: true,
-  //       user: user
-  //     })
-  //     : this.setState({
-  //       isLoggedIn: false
-  //     });
-  //   console.log(localStorage)
-  // }
 
   componentDidMount() {
     if (localStorage.token) {
@@ -46,12 +24,11 @@ class App extends Component {
         headers: { authorization: `Bearer ${localStorage.token}` }
       })
         .then(response => {
-          console.log('App successfully recieves a response')
+          console.log('App successfully recieves a response', response)
           this.setState({
             isLoggedIn: true,
-            // userId: response.userId
-            user: response.data.user
-          })
+            user: response.data
+          });
         })
         .catch(err => console.log(err))
     } else {
@@ -106,7 +83,7 @@ class App extends Component {
           // username: res.data.user.username,
           redirect: true,
           // userId: res.data.user._id,
-          user: user
+          user
         });
         console.log(this.state.user);
       })
@@ -150,11 +127,7 @@ class App extends Component {
       return (
         <div>
           <Nav
-            title={this.state.title}
-            content={this.state.content}
-            platform={this.state.platform}
             handleInput={this.handleInput}
-            handleNewPost={this.handleNewPost}
             handleLogOut={this.handleLogOut}
             isLoggedIn={this.state.isLoggedIn}
             user={this.state.user} />
