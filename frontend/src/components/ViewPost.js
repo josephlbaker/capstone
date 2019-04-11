@@ -14,12 +14,16 @@ export default class ViewPost extends Component {
     myPosts: false
   }
 
-  componentDidMount() {
+  fetchPost = () => {
     fetch(`http://localhost:3001/posts/${this.props.postId}`, {
       method: 'GET'
     })
       .then(results => results.json())
       .then(data => this.setState({ post: data }))
+  }
+
+  componentDidMount() {
+    this.fetchPost();
   }
 
   returnToGamePosts = (e) => {
@@ -50,6 +54,7 @@ export default class ViewPost extends Component {
         })
         .then(res => {
           console.log(res);
+          this.fetchPost();
         })
         .catch(err => {
           console.log("Error");
@@ -62,6 +67,7 @@ export default class ViewPost extends Component {
       return (
         <div>
           <EditPost
+            handleGoBack={this.props.handleGoBack}
             handleBackToPosts={this.handleBackToPosts}
             post={this.state.post} />
         </div>

@@ -16,13 +16,17 @@ export default class Post extends Component {
     })
   }
 
-  componentDidMount() {
+  fetchPosts = () => {
     fetch("http://localhost:3001/posts", {
       method: "GET"
     })
       .then(results => results.json())
       .then(data => this.setState({ posts: data }))
       .catch(function (error) { console.log(error) });
+  }
+
+  componentDidMount() {
+    this.fetchPosts();
   }
 
   componentDidUpdate() {
@@ -47,11 +51,12 @@ export default class Post extends Component {
     this.setState({
       postId: ''
     })
+    this.fetchPosts();
   }
 
   _renderPosts = (post, index) => {
     if (post.user.username === this.props.user.username) {
-      return <li key={index}>{post.title} - {post.content} - {post.user.username}
+      return <li key={index}>{post.title} - {post.content} - {post.user.username} - {post.gameTitle}
         <button name="viewPost" onClick={() => { this.handleClick(post) }}>View</button>
       </li>
     } else {

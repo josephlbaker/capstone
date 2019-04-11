@@ -46,6 +46,7 @@ export default class EditPost extends Component {
       })
       .then(res => {
         console.log(res);
+        this.props.handleGoBack();
       })
       .catch(err => {
         console.log("Error");
@@ -57,6 +58,7 @@ export default class EditPost extends Component {
       .delete(`http://localhost:3001/posts/${this.props.post._id}/deletepost`)
       .then(res => {
         console.log(res);
+        this.props.handleGoBack();
       })
       .catch(err => {
         console.log("Error");

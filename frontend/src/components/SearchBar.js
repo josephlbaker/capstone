@@ -51,7 +51,6 @@ class SearchBar extends Component {
           ref={input => this.search = input}
           onChange={this.handleInputChange}
         />
-        <p>{this.state.query}</p>
         <div className="results-container">
           <Result
             user={this.props.user}

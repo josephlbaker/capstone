@@ -6,7 +6,7 @@ import Profile from './Profile';
 import PopularGames from './PopularGames';
 
 import '../styles/Nav.css';
-import { Menu } from 'semantic-ui-react'
+import { Menu, Icon } from 'semantic-ui-react'
 
 export default class Nav extends Component {
 
@@ -48,15 +48,16 @@ export default class Nav extends Component {
       <div className="nav-components">
         {this.renderSubComp()}
         <Menu>
-          <Menu.Item onClick={this.handleClick.bind(this, 'games')} active={this.state.render === 'games'}>Games</Menu.Item>
+          <Menu.Item onClick={this.handleClick.bind(this, 'games')} active={this.state.render === 'games'}><Icon name='gamepad' size='large' /></Menu.Item>
           <Menu.Item onClick={this.handleClick.bind(this, 'posts')} active={this.state.render === 'posts'}>Posts</Menu.Item>
           <Menu.Item onClick={this.handleClick.bind(this, 'profile')} active={this.state.render === 'profile'}>Profile</Menu.Item>
           <Menu.Item onClick={this.handleClick.bind(this, 'popular')} active={this.state.render === 'popular'}>Popular</Menu.Item>
-          {/* <li><LogOut handleLogOut={this.props.handleLogOut} /></li> */}
         </Menu>
       </div>
     )
   }
+
+  // gamepad
 
   //   if(this.props.isLoggedIn) {
   //     return (

@@ -45,6 +45,7 @@ export default class CommentList extends Component {
       .delete(`http://localhost:3001/comments/${comment}/deletecomment`)
       .then(res => {
         console.log(res);
+        this.fetchComments();
       })
       .catch(err => {
         console.log("Error");

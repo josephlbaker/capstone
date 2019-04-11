@@ -1,0 +1,17 @@
+p , h3{
+  display: inline;
+}
+
+.username{
+  margin-left: 2px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.body {
+  background-color: #f2f2f2;
+}
+
+.new-post {
+  right: 0 !important;
+}
