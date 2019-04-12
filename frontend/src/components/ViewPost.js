@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Container, Segment, Icon, Menu } from 'semantic-ui-react'
-
+import '../styles/ViewPost.css';
 
 import EditPost from './EditPost';
 import CommentList from './CommentList';
@@ -48,8 +48,8 @@ export default class ViewPost extends Component {
   handleJoin = (event) => {
     event.preventDefault();
     if (!this.state.post.players.includes(this.props.user.username)) {
-      let user = this.props.user.username
-      this.state.post.players.push(user)
+      let currentUser = this.props.user.username
+      this.state.post.players.push(currentUser)
       axios
         .put(`http://localhost:3001/posts/${this.state.post._id}/updatepost`, {
           players: this.state.post.players
@@ -78,52 +78,68 @@ export default class ViewPost extends Component {
 
     if (this.props.user._id === this.state.post.user) {
       return (
-        <div>
+        <div class="parent-container">
           <Menu inverted color="blue" className="top-nav">
             <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
           </Menu>
-          {this.state.post.title}
-          {this.state.post.gameTitle}
-          {this.state.post.content}
-          {this.state.post.platform}
-          {this.state.post.players}
-          <button name="editPost" onClick={this.handleClick}>Edit</button>
-          <CommentList user={this.props.user}
-            post={this.state.post} />
+          <Container>
+            <Segment>
+              <h3>{this.state.post.title}</h3><p> - {this.props.username}</p>
+              <br />
+              <p className="game-title">{this.state.post.gameTitle} on {this.state.post.platform}</p>
+              <br />
+              <p className="content">{this.state.post.content}</p>
+              <br />
+              <p className="players">Players participating: {this.state.post.players}</p>
+              <button name="editPost" onClick={this.handleClick}>Edit</button>
+            </Segment>
+            <CommentList user={this.props.user}
+              post={this.state.post} />
+          </Container>
         </div>
       )
     }
     if (this.state.post.isEvent) {
       return (
-        <div>
+        <div class="parent-container">
           <Menu inverted color="blue" className="top-nav">
             <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
-
           </Menu>
-          {this.state.post.title}
-          {this.state.post.gameTitle}
-          {this.state.post.content}
-          {this.state.post.platform}
-          <h1>Players participating</h1>
-          {this.state.post.players}
-          <button name="joinEvent" onClick={this.handleJoin}>Join Event</button>
-          <CommentList user={this.props.user}
-            post={this.state.post} />
+          <Container>
+            <Segment>
+              <h3>{this.state.post.title}</h3><p> - {this.props.username}</p>
+              <br />
+              <p className="game-title">{this.state.post.gameTitle} on {this.state.post.platform}</p>
+              <br />
+              <p className="content">{this.state.post.content}</p>
+              <br />
+              <p className="players">Players participating: {this.state.post.players}</p>
+              <button name="joinEvent" onClick={this.handleJoin}>Join Event</button>
+            </Segment>
+            <CommentList user={this.props.user}
+              post={this.state.post} />
+          </Container>
         </div>
       )
     }
     return (
-      <div>
+      <div class="parent-container">
         <Menu inverted color="blue" className="top-nav">
           <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
         </Menu>
-        {this.state.post.title}
-        {this.state.post.gameTitle}
-        {this.state.post.content}
-        {this.state.post.platform}
-        {this.state.post.players}
-        <CommentList user={this.props.user}
-          post={this.state.post} />
+        <Container>
+          <Segment>
+            <h3>{this.state.post.title}</h3><p> - {this.props.username}</p>
+            <br />
+            <p className="game-title">{this.state.post.gameTitle} on {this.state.post.platform}</p>
+            <br />
+            <p className="content">{this.state.post.content}</p>
+            <br />
+            <p className="players">Players participating: {this.state.post.players}</p>
+          </Segment>
+          <CommentList user={this.props.user}
+            post={this.state.post} />
+        </Container>
       </div>
     )
   }

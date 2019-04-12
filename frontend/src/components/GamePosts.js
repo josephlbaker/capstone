@@ -64,6 +64,7 @@ export default class GamePosts extends Component {
   handleClick(result) {
     this.setState({
       postId: result._id,
+      username: result.user.username
     })
   }
 
@@ -154,6 +155,7 @@ export default class GamePosts extends Component {
     if (this.state.postId) {
       return (
         <ViewPost
+          username={this.state.username}
           handleGoBack={this.handleGoBack}
           user={this.props.user}
           postId={this.state.postId}

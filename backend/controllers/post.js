@@ -26,13 +26,6 @@ module.exports = {
 
     db.Post.create(newPost, (err, newPostCreated) => {
       if (err) return console.log(err);
-
-      // populate the user before sending back the post of the json
-      // book.populate('_creator', function (err) {
-      //   console.log(book._creator);
-      // });
-
-      // res.json(newPostCreated);
       newPostCreated.populate('user', () => {
         res.json(newPostCreated);
       })

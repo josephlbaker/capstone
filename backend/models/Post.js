@@ -36,13 +36,7 @@ const PostSchema = new Schema({
     required: true
   },
   players: [String],
-  // players: [{
-  //   playerName: String,
-  //   // playerId: String
-  // }],
   isEvent: Boolean
 });
 
 module.exports = mongoose.model("Post", PostSchema);
-// need embedded data
-// user:[User.Schema]
