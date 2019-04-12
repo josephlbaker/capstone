@@ -132,7 +132,7 @@ class App extends Component {
             handleInput={this.handleInput}
             handleLogin={this.handleLogin}
             handleSignUp={this.handleSignUp} />
-        </div>
+        </div >
       )
     }
   }

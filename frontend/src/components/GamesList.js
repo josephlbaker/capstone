@@ -42,12 +42,14 @@ export default class GamesList extends Component {
     } else {
       return (
         <div className="registration-buttons">
+          <div className="image-wrapper">
+          </div>
           {this.renderSubComp()}
           <Container>
             <Grid>
               <Grid.Column textAlign="center">
-                <Button className="registration" onClick={this.handleClick.bind(this, 'login')}>Login</Button>
-                <Button className="registration" onClick={this.handleClick.bind(this, 'signup')}>Signup</Button>
+                <Button className="" onClick={this.handleClick.bind(this, 'login')}>Login</Button>
+                <Button primary className="" onClick={this.handleClick.bind(this, 'signup')}>Signup</Button>
               </Grid.Column>
             </Grid>
           </Container>

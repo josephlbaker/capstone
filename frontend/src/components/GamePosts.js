@@ -165,7 +165,7 @@ export default class GamePosts extends Component {
     }
     if (!this.state.newPost) {
       return (
-        <div className="body">
+        <div className="game-post-body">
           <Menu inverted color="blue" className="top-nav">
             <Menu.Item className="back"><button className="back" onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
             <Menu.Item className="new-post" position='right'><button className="new-post" onClick={this.handleNewPostClick}><Icon inverted name='edit' size='large' /></button></Menu.Item>

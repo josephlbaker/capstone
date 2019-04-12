@@ -1,0 +1,28 @@
+/* .submit-button {
+  color: white;
+} */
+
+.form-segment {
+  margin: 20px !important;
+  padding: 20px !important;
+}
+
+.form-segment .text {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+}
+
+.submit-button {
+  color: black;
+}
+
+.checkbox {
+  display: inline;
+}
+
+.add-post {
+    min-height: 100vh;
+    background-color: #f2f2f2;
+}

@@ -41,3 +41,8 @@ div.item.new-post {
 .right .item {
   margin-right: 0 !important;
 }
+
+.game-post-body{
+  min-height: 100vh;
+  background-color: #f2f2f2;
+}

@@ -40,3 +40,29 @@
 .item {
     margin: 0 auto !important;
 }
+
+.form-segment {
+  margin: 20px !important;
+  padding: 20px !important;
+}
+
+.form-segment input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+}
+
+.image-wrapper{
+  left: 0;
+  right: 0;
+  top: 20px;
+  position: absolute;
+  z-index: 9999;
+  background-image: url("../images/battle-button-white.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 75px;
+}
+
