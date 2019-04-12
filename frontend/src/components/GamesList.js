@@ -42,7 +42,6 @@ export default class GamesList extends Component {
     } else {
       return (
         <div className="registration-buttons">
-          <div><Image src="../images/logo2.jpeg" /></div>
           {this.renderSubComp()}
           <Container>
             <Grid>
