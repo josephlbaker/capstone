@@ -32,9 +32,6 @@ export default class GamesList extends Component {
     if (this.props.isLoggedIn) {
       return (
         <div className="search-container">
-          <Menu inverted color="blue" className="top-nav">
-            <Menu.Item><h3>Search</h3></Menu.Item>
-          </Menu>
           <SearchBar
             user={this.props.user}
           />

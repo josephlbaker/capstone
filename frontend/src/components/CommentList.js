@@ -120,7 +120,6 @@ export default class CommentList extends Component {
     if (!this.state.newComment) {
       return (
         <div>
-          <h2>Comments</h2>
           <button onClick={this.handleNewCommentClick}>Add a comment</button>
           <ul>
             {

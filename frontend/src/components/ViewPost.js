@@ -81,7 +81,6 @@ export default class ViewPost extends Component {
         <div>
           <Menu inverted color="blue" className="top-nav">
             <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
-            {/* <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item> */}
           </Menu>
           {this.state.post.title}
           {this.state.post.gameTitle}
@@ -97,7 +96,10 @@ export default class ViewPost extends Component {
     if (this.state.post.isEvent) {
       return (
         <div>
-          <button onClick={this.props.handleGoBack}>Go back</button>
+          <Menu inverted color="blue" className="top-nav">
+            <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+
+          </Menu>
           {this.state.post.title}
           {this.state.post.gameTitle}
           {this.state.post.content}
@@ -112,7 +114,9 @@ export default class ViewPost extends Component {
     }
     return (
       <div>
-        <button onClick={this.props.handleGoBack}>Go back</button>
+        <Menu inverted color="blue" className="top-nav">
+          <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+        </Menu>
         {this.state.post.title}
         {this.state.post.gameTitle}
         {this.state.post.content}
