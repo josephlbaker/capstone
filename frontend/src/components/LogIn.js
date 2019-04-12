@@ -21,7 +21,7 @@ export default class LogIn extends Component {
       <div>
         <form>
           <input name="email" placeholder="Email" onChange={this.props.handleInput} />
-          <input name="password" placeholder="Password" onChange={this.props.handleInput} />
+          <input type="password" name="password" placeholder="Password" onChange={this.props.handleInput} />
           {/* <Link to="/" name="login" onClick={this.props.handleLogin}>Click to login</Link> */}
           {/* {this.renderRedirect()} */}
           <button name="login" onClick={this.props.handleLogin}>Submit</button>

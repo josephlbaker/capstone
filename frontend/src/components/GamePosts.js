@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { debounce } from 'throttle-debounce'
+import { Container, Segment, Icon, Menu } from 'semantic-ui-react'
 
+import '../styles/GamePosts.css';
 
 import ViewPost from './ViewPost';
 import NewPost from './NewPost';
@@ -16,13 +18,17 @@ export default class GamePosts extends Component {
     isEvent: false
   }
 
-  componentDidMount() {
+  fetchPosts = () => {
     fetch("http://localhost:3001/posts", {
       method: "GET"
     })
       .then(results => results.json())
       .then(data => this.setState({ posts: data }))
       .catch(function (error) { console.log(error) });
+  }
+
+  componentDidMount() {
+    this.fetchPosts();
   }
 
   componentDidUpdate() {
@@ -110,17 +116,21 @@ export default class GamePosts extends Component {
     this.setState({
       postId: ''
     })
+    this.fetchPosts();
   }
 
   _renderPosts = (post, index) => {
     if (post.gameId === this.props.gameId.toString()) {
       return (
-        <li key={index}>
-          {post.title} - {post.content} - {post.user.username}
+        <Segment raised key={index}>
+          <h3>{post.title}</h3> <p className="username">-{post.user.username}</p>
+          <br />
+          <p>{post.content}</p>
           <div>
-            <button name="editPost" onClick={() => { this.handleClick(post) }}>View</button>
+            <br />
+            <button className="edit-post" name="editPost" onClick={() => { this.handleClick(post) }}>View Details</button>
           </div>
-        </li>
+        </Segment>
       )
     } else {
       return null;
@@ -153,18 +163,20 @@ export default class GamePosts extends Component {
     }
     if (!this.state.newPost) {
       return (
-        <div>
-          <button onClick={this.props.handleGoBack}>Go back</button>
+        <div className="body">
+          <Menu inverted color="blue" className="top-nav">
+            <Menu.Item className="back"><button className="back" onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+            <Menu.Item className="new-post" position='right'><button className="new-post" onClick={this.handleNewPostClick}><Icon inverted name='edit' size='large' /></button></Menu.Item>
+          </Menu>
           <h1>Posts for {this.props.gameTitle}</h1>
-          <ul>
+          <Container>
             {
               posts ?
                 posts.map(this._renderPosts)
                 :
                 "No posts for this game"
             }
-            <li><button onClick={this.handleNewPostClick}>New Post</button></li>
-          </ul>
+          </Container>
         </div>
       )
     }

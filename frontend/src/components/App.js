@@ -90,16 +90,6 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  handleLogOut = () => {
-    this.setState({
-      email: "",
-      password: "",
-      isLoggedIn: false
-    });
-    localStorage.clear();
-    window.location.href = "/"
-  };
-
   handleSignUp = event => {
     event.preventDefault();
     axios

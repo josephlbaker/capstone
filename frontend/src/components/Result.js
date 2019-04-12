@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import '../styles/Result.css';
+
 import GamePosts from './GamePosts';
 
 export default class Result extends Component {
@@ -32,9 +34,9 @@ export default class Result extends Component {
 
     const resultsMarkup = this.props.results.map((result, key) => {
       return (
-        <div key={key}>
-          <h2>Results:</h2>
-          <p>Name: {result.name}</p>
+        <div className="image-container" key={key}>
+          {/* <h2>Results:</h2>
+          <p>Name: {result.name}</p> */}
           <img onClick={() => { this.handleClick(result) }} src={result.image.small_url} alt={`${result.name}`} />
         </div>
       )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import '../styles/SearchBar.css';
 
 import Result from './Result';
 
@@ -47,11 +48,11 @@ class SearchBar extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
-          placeholder="Search for..."
+          className="search-bar"
+          placeholder="Search thousands of game titles..."
           ref={input => this.search = input}
           onChange={this.handleInputChange}
         />
-        <p>{this.state.query}</p>
         <div className="results-container">
           <Result
             user={this.props.user}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Container, Segment, Icon, Menu } from 'semantic-ui-react'
+
 
 import EditPost from './EditPost';
 import CommentList from './CommentList';
@@ -14,12 +16,16 @@ export default class ViewPost extends Component {
     myPosts: false
   }
 
-  componentDidMount() {
+  fetchPost = () => {
     fetch(`http://localhost:3001/posts/${this.props.postId}`, {
       method: 'GET'
     })
       .then(results => results.json())
       .then(data => this.setState({ post: data }))
+  }
+
+  componentDidMount() {
+    this.fetchPost();
   }
 
   returnToGamePosts = (e) => {
@@ -50,6 +56,7 @@ export default class ViewPost extends Component {
         })
         .then(res => {
           console.log(res);
+          this.fetchPost();
         })
         .catch(err => {
           console.log("Error");
@@ -62,15 +69,20 @@ export default class ViewPost extends Component {
       return (
         <div>
           <EditPost
+            handleGoBack={this.props.handleGoBack}
             handleBackToPosts={this.handleBackToPosts}
             post={this.state.post} />
         </div>
       )
     }
+
     if (this.props.user._id === this.state.post.user) {
       return (
         <div>
-          <button onClick={this.props.handleGoBack}>Go back</button>
+          <Menu inverted color="blue" className="top-nav">
+            <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+            {/* <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item> */}
+          </Menu>
           {this.state.post.title}
           {this.state.post.gameTitle}
           {this.state.post.content}
