@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { debounce } from 'throttle-debounce';
+import { Segment, Container, Button } from 'semantic-ui-react'
+import '../styles/CommentList.css';
 
 import AddComment from './AddComment';
 
@@ -95,10 +97,10 @@ export default class CommentList extends Component {
 
   _renderComments = (comment, index) => {
     if (comment.post._id === this.props.post._id && this.props.user._id === comment.user._id) {
-      return (<li key={index}>{comment.content} - {comment.user.username} <button onClick={() => { this.handleDeleteComment(comment._id) }}>Delete Comment</button></li>)
+      return (<Segment key={index}>{comment.content} - {comment.user.username} <Button floated='right' size='mini' class="delete-button" onClick={() => { this.handleDeleteComment(comment._id) }}>Delete</Button></Segment>)
     }
     if (comment.post._id === this.props.post._id) {
-      return (<li key={index}>{comment.content} - {comment.user.username}</li>)
+      return (<Segment key={index}>{comment.content} - {comment.user.username}</Segment>)
     }
     else {
       return null;
@@ -120,16 +122,15 @@ export default class CommentList extends Component {
     if (!this.state.newComment) {
       return (
         <div>
-          <h2>Comments</h2>
-          <button onClick={this.handleNewCommentClick}>Add a comment</button>
-          <ul>
+          <Container>
+            <Button primary class="add-comment" size='mini' onClick={this.handleNewCommentClick}>Add a comment</Button>
             {
               comments ?
                 comments.map(this._renderComments)
                 :
                 "No comments yet..."
             }
-          </ul>
+          </Container>
         </div>
       );
     }

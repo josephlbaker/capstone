@@ -32,9 +32,6 @@ export default class GamesList extends Component {
     if (this.props.isLoggedIn) {
       return (
         <div className="search-container">
-          <Menu inverted color="blue" className="top-nav">
-            <Menu.Item><h3>Search</h3></Menu.Item>
-          </Menu>
           <SearchBar
             user={this.props.user}
           />
@@ -45,13 +42,14 @@ export default class GamesList extends Component {
     } else {
       return (
         <div className="registration-buttons">
-          <div><Image src="../images/logo2.jpeg" /></div>
+          <div className="image-wrapper">
+          </div>
           {this.renderSubComp()}
           <Container>
             <Grid>
               <Grid.Column textAlign="center">
-                <Button className="registration" onClick={this.handleClick.bind(this, 'login')}>Login</Button>
-                <Button className="registration" onClick={this.handleClick.bind(this, 'signup')}>Signup</Button>
+                <Button className="" onClick={this.handleClick.bind(this, 'login')}>Login</Button>
+                <Button primary className="" onClick={this.handleClick.bind(this, 'signup')}>Signup</Button>
               </Grid.Column>
             </Grid>
           </Container>

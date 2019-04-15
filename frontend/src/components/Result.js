@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import '../styles/Result.css';
-
 import GamePosts from './GamePosts';
+import '../styles/Result.css';
 
 export default class Result extends Component {
 
@@ -15,6 +14,8 @@ export default class Result extends Component {
       gameId: result.id,
       gameTitle: result.name
     })
+
+    this.props.onGetResult(result);
   }
 
   render() {
@@ -35,8 +36,6 @@ export default class Result extends Component {
     const resultsMarkup = this.props.results.map((result, key) => {
       return (
         <div className="image-container" key={key}>
-          {/* <h2>Results:</h2>
-          <p>Name: {result.name}</p> */}
           <img onClick={() => { this.handleClick(result) }} src={result.image.small_url} alt={`${result.name}`} />
         </div>
       )

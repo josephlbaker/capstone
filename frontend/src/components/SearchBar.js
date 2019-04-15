@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import '../styles/SearchBar.css';
+import { Menu } from 'semantic-ui-react'
 
 import Result from './Result';
 
@@ -8,7 +9,11 @@ class SearchBar extends Component {
   state = {
     query: '',
     results: [],
-    resultId: ''
+    resultId: '',
+    result: {
+      gameId: null,
+      gameTitle: null
+    }
   }
 
   getGames = () => {
@@ -44,19 +49,38 @@ class SearchBar extends Component {
     this.getGames()
   }
 
+  getResult = (result) => {
+    this.setState({
+      result: {
+        gameId: result.id,
+        gameTitle: result.name
+      }
+    })
+  }
+
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
+    const renderInput = !this.state.result.gameId && (
+      <div>
+        <Menu inverted color="blue" className="top-nav">
+          <Menu.Item><h3>Search</h3></Menu.Item>
+        </Menu>
         <input
           className="search-bar"
-          placeholder="Search thousands of game titles..."
+          placeholder="Search for..."
           ref={input => this.search = input}
           onChange={this.handleInputChange}
         />
+      </div>
+    );
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        {renderInput}
         <div className="results-container">
           <Result
             user={this.props.user}
             results={this.state.results}
+            onGetResult={this.getResult}
           />
         </div>
       </form>

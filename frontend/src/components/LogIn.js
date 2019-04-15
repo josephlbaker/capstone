@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import { Grid, Segment, Button } from 'semantic-ui-react'
+
 
 export default class LogIn extends Component {
   // state = {
@@ -19,12 +21,30 @@ export default class LogIn extends Component {
   render() {
     return (
       <div>
+        {/* <Link to="/" name="login" onClick={this.props.handleLogin}>Click to login</Link> */}
+        {/* {this.renderRedirect()} */}
         <form>
-          <input name="email" placeholder="Email" onChange={this.props.handleInput} />
-          <input type="password" name="password" placeholder="Password" onChange={this.props.handleInput} />
-          {/* <Link to="/" name="login" onClick={this.props.handleLogin}>Click to login</Link> */}
-          {/* {this.renderRedirect()} */}
-          <button name="login" onClick={this.props.handleLogin}>Submit</button>
+          <Segment className="form-segment">
+            <Grid columns='equal'>
+              <Grid.Row>
+                <Grid.Column>
+                  <input name="email" placeholder="Email" onChange={this.props.handleInput} />
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column>
+                  <input type="password" name="password" placeholder="Password" onChange={this.props.handleInput} />
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column>
+                  <Button fluid name="login" onClick={this.props.handleLogin} secondary>
+                    Submit
+                  </Button>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
         </form>
       </div >
     )

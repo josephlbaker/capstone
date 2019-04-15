@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import '../styles/Profile.css';
-import { Segment, Container, Menu } from 'semantic-ui-react'
+import { Button, Container, Menu, Segment } from 'semantic-ui-react'
 
 
 import EditProfile from './EditProfile';
-import LogOut from './LogOut';
 
 export default class Profile extends Component {
 
@@ -53,21 +52,39 @@ export default class Profile extends Component {
     }
   }
 
+  handleLogOut = () => {
+    this.setState({
+      email: "",
+      password: "",
+      isLoggedIn: false
+    });
+    localStorage.clear();
+    window.location.href = "/"
+  };
+
   render() {
     return (
       <div className="profile-container">
         <Menu inverted color="blue" className="top-nav">
           <Menu.Item><h3>My Profile</h3></Menu.Item>
         </Menu>
-        {this.props.user.firstName}
-        {this.props.user.lastName}
-        {this.props.user.username}
-        {this.props.user.email}
-        <ul>
-          <li onClick={this.handleClick.bind(this, 'edit-profile')}>Edit Profile</li>
-          <li><LogOut handleLogOut={this.props.handleLogOut} /></li>
-        </ul>
-        {this.renderSubComp()}
+        <Container>
+          <Segment>
+            <img src="https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg" alt="" />
+            <p>{this.props.user.firstName}</p>
+            <br />
+            <p>{this.props.user.lastName}</p>
+            <br />
+            <p>{this.props.user.username}</p>
+            <br />
+            <p>{this.props.user.email}</p >
+            <br />
+            <br />
+            <Button primary onClick={this.handleClick.bind(this, 'edit-profile')}>Edit Profile</Button>
+            <Button onClick={this.handleLogOut}>Log Out</Button>
+            {this.renderSubComp()}
+          </Segment>
+        </Container>
       </div>
     )
   }

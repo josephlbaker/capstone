@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import LogOut from './LogOut';
 import GamesList from './GamesList';
 import Post from './Post';
 import Profile from './Profile';
@@ -56,24 +55,4 @@ export default class Nav extends Component {
       </div>
     )
   }
-
-  // user
-  // search
-  // newspaper outline
-  // gamepad
-
-  //   if(this.props.isLoggedIn) {
-  //     return (
-  //       <div>
-  //         <LogOut
-  //           isLoggedIn={this.props.isLoggedIn}
-  //           handleLogOut={this.props.handleLogOut} />
-  //       </div>
-  //     )
-  //   } else {
-  //   return (
-  //     null
-  //   )
-  // }
-  //   }
 }
