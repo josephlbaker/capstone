@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Segment, Container, Menu, Icon, Grid, Button } from 'semantic-ui-react'
+import '../styles/EditPost.css';
+
 
 export default class EditPost extends Component {
 
@@ -67,22 +70,52 @@ export default class EditPost extends Component {
 
   render() {
     return (
-      <div className="new-post">
-        <button onClick={this.props.handleBackToPosts}>Go back</button>
-        <h2>Edit your Post</h2>
-        <form>
-          <p>Title</p>
-          <input name="title" placeholder={this.state.title} onChange={this.handleInput} />
-          <p>Content</p>
-          <input name="content" placeholder={this.state.content} onChange={this.handleInput} />
-          <p>Platform</p>
-          <input name="platform" placeholder={this.state.platform} onChange={this.handleInput} />
-          <label htmlFor="isEvent">Is this an event?</label>
-          <input type="checkbox" name="isEvent" onChange={this.handleCheckbox} />
-          <p>Other players will be able to join</p>
-          <button name="submit" onClick={this.handleEditPost}>Submit</button>
-        </form>
-        <button name="delete" onClick={this.handleDeletePost}>Delete Post</button>
+      <div className="edit-posts">
+        <Menu inverted color="blue" className="top-nav">
+          <Menu.Item className="back"><button className="back" onClick={this.props.handleBackToPosts}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+        </Menu>
+        <div>
+          <form>
+            <Segment className="form-segment">
+              <Grid columns='equal'>
+                <Grid.Row>
+                  <Grid.Column>
+                    <p>Title</p>
+                    <input name="title" placeholder={this.state.title} onChange={this.handleInput} />
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column>
+                    <p>Content</p>
+                    <input name="content" placeholder={this.state.content} onChange={this.handleInput} />
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column>
+                    <p>Platform</p>
+                    <input name="platform" placeholder={this.state.platform} onChange={this.handleInput} />
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column>
+                    <label htmlFor="isEvent">Is this an event?</label>
+                    <input type="checkbox" name="isEvent" onChange={this.handleCheckbox} />
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column>
+                    <Button fluid primary name="submit" onClick={this.handleEditPost}>Submit</Button>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column>
+                    <Button fluid name="delete" onClick={this.handleDeletePost}>Delete Post</Button>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Segment>
+          </form>
+        </div>
       </div>
     )
   }
