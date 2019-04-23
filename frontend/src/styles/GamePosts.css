@@ -2,6 +2,10 @@ p , h3{
   display: inline;
 }
 
+h1 {
+  padding-top: 0px !important;
+}
+
 .username{
   margin-left: 2px;
   font-style: italic;
@@ -24,7 +28,7 @@ div.item.new-post {
   position: static !important;
 }
 
-.ui top-nav menu {
+.ui .top-nav menu {
   margin-top: 0 !important;
   top: 0 !important;
 }
@@ -45,4 +49,9 @@ div.item.new-post {
 .game-post-body{
   min-height: 100vh;
   background-color: #f2f2f2;
+}
+
+.new-post {
+  background: none;
+  border: none;
 }

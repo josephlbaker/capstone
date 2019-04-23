@@ -80,7 +80,7 @@ export default class ViewPost extends Component {
       return (
         <div class="parent-container">
           <Menu inverted color="blue" className="top-nav">
-            <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+            <Menu.Item className="back"><button className="back" onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
           </Menu>
           <Container>
             <Segment>
@@ -103,7 +103,7 @@ export default class ViewPost extends Component {
       return (
         <div class="parent-container">
           <Menu inverted color="blue" className="top-nav">
-            <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+            <Menu.Item className="back"><button className="back" onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
           </Menu>
           <Container>
             <Segment>
@@ -125,7 +125,7 @@ export default class ViewPost extends Component {
     return (
       <div class="parent-container">
         <Menu inverted color="blue" className="top-nav">
-          <Menu.Item className="back"><button onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
+          <Menu.Item className="back"><button className="back" onClick={this.props.handleGoBack}><Icon inverted name='arrow left' size='large' /></button></Menu.Item>
         </Menu>
         <Container>
           <Segment>

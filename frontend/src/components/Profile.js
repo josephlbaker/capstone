@@ -65,12 +65,13 @@ export default class Profile extends Component {
   render() {
     return (
       <div className="profile-container">
-        <Menu inverted color="blue" className="top-nav">
+        <Menu inverted color="blue" className="profile-top-nav">
           <Menu.Item><h3>My Profile</h3></Menu.Item>
         </Menu>
         <Container>
           <Segment>
             <img src="https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg" alt="" />
+            <br />
             <p>{this.props.user.firstName}</p>
             <br />
             <p>{this.props.user.lastName}</p>

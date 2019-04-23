@@ -58,6 +58,3 @@ export default class GamesList extends Component {
     }
   }
 }
-
-// working API
-// https://www.giantbomb.com/api/games/?api_key=6e0060f42d81f489256e472989988c2b69e0eacc&format=jsonp&resources=game
