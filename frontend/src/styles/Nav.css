@@ -1,12 +1,9 @@
-.menu {
-  top: 0 !important;
-}
 
 div.ui.menu {
   width: 100%;
   left: 0;
   right: 0;
-  top: 0;
+  bottom: 0;
   text-align: center;
   position: sticky !important;
   z-index: 100 !important;
@@ -27,37 +24,4 @@ a{
 .ui.menu .item {
   position: static;
   justify-content: center;
-}
-
-
-
-/* MEDIA QUERIES */
-
-@media only screen and (max-width: 480px){
-  div.ui.menu {
-    width: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    text-align: center;
-    position: sticky !important;
-    z-index: 100 !important;
-    margin-top: 0 !important;
-  }
-
-  a.item{
-    width: 25%;
-    left: 0;
-    right: 0;
-    text-align: center;
-  }
-
-  a{
-    text-align: center;
-  }
-
-  .ui.menu .item {
-    position: static;
-    justify-content: center;
-  }
 }

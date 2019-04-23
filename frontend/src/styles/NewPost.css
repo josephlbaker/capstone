@@ -2,7 +2,7 @@
   color: white;
 } */
 
-.form-segment {
+/* .form-segment {
   margin: 20px !important;
   padding: 20px !important;
 }
@@ -12,10 +12,12 @@
   padding: 10px;
   border: 1px solid #d3d3d3;
   border-radius: 5px;
-}
+} */
 
 .submit-button {
-  color: black;
+  font-weight: bold;
+  color: white;
+  background-color: #2785d0;
 }
 
 .checkbox {
@@ -25,4 +27,21 @@
 .add-post {
     min-height: 100vh;
     background-color: #f2f2f2;
+}
+
+.back {
+    background: none;
+    border: none;
+}
+
+.form-segment {
+  margin: 20px !important;
+  padding: 20px !important;
+}
+
+.form-segment input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
 }

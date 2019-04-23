@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import GamePosts from './GamePosts';
 import '../styles/Result.css';
 
+import { Segment } from 'semantic-ui-react'
+
 export default class Result extends Component {
 
   state = {
@@ -36,7 +38,7 @@ export default class Result extends Component {
     const resultsMarkup = this.props.results.map((result, key) => {
       return (
         <div className="image-container" key={key}>
-          <img onClick={() => { this.handleClick(result) }} src={result.image.small_url} alt={`${result.name}`} />
+          <Segment><img onClick={() => { this.handleClick(result) }} src={result.image.small_url} alt={`${result.name}`} /></Segment>
         </div>
       )
     })

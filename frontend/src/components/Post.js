@@ -93,7 +93,7 @@ export default class Post extends Component {
     } else {
       return (
         <div className="parent">
-          <Menu inverted color="blue" className="top-nav">
+          <Menu inverted color="blue" className="post-top-nav">
             <Menu.Item><h3>My Feed</h3></Menu.Item>
           </Menu>
           <Container>
