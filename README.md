@@ -27,8 +27,8 @@ Battle Buddy is a social networking platform that aims to connect gamers with pe
 -Users can search for games and interact in the same way as above.
 -Users can sort posts by posts they've made.
 -Users can view their own profile information.
--Users can edit their profile including email, username, and password.
+-Users can edit their profile including email, username, and password
 
-##Future Features
+## Future Features
 -Users will be able to upvote or downvote users depending on how they act as a team mate.
 -Will add more styling.
