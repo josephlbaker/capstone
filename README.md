@@ -3,6 +3,9 @@
 ## Description
 Battle Buddy is a social networking platform that aims to connect gamers with people who love the same games they do. Users can sign up to the site and search thousands of game titles which they can then create posts and events for. Other users can comment on their posts and users can see anyone who's joined their event.
 
+## Link
+https://battle-buddy-app.herokuapp.com/
+
 ## Technologies Used
 -React  
 -MongoDB  
